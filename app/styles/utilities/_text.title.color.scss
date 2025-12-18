@@ -1,0 +1,11 @@
+@import '../abstracts/colors';
+
+.title-primary-600 {
+    color: $accent-600;
+    font-weight: 600;
+}
+
+.title-primary-700 {
+    color: $accent-700;
+    font-weight: 700;
+}
