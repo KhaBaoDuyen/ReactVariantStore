@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Search } from "~/components/UI/Search";
 import { ButtonAnimation } from "~/components/UI/buttonAnimation/buttonAnimation";
 import { ImagesForcus } from "~/components/UI/ImagesForcus/ImagesForcus";
-import { CategoryBannerSlide } from "~/components/UI/CategoryBannerSlider/CategoryBannerSlider";
+import { CategoryBannerSlide } from "~/components/UI/ImagesBannerSlider/ImagesBannerSlider";
 
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";

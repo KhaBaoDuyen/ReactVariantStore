@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 
-import { ImagesData } from "./CategoryBannerSlider.data";
+import { ImagesData } from "./ImagesBannerSlider.data";
 
 import "swiper/css";
 import "swiper/css/pagination";
