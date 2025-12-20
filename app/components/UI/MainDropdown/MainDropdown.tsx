@@ -55,13 +55,13 @@ export const MainDropdown = ({
                         </div>
 
                          <div className="mt-5 flex flex-col gap-3 border-t border-accent-600/20 pt-4">
-                            <Link to="/update" className="border-2 border-accent-600 text-accent-600 px-4 py-1.5 rounded-full text-sm text-center hover:bg-orange-50 transition-colors">
+                            <Link to="/update" className="border-2 border-accent-600 text-on-primary px-4 py-1.5 rounded-xl text-sm text-center bg-accent-700 transition-colors">
                                 Cập nhật phần mềm
                             </Link>
-                            <Link to="/account" className="border-2 border-accent-600 text-accent-600 px-4 py-1.5 rounded-full text-sm text-center hover:bg-orange-50 transition-colors">
+                            <Link to="/account" className="border-2 border-accent-600 text-on-primary px-4 py-1.5 rounded-xl text-sm text-center bg-accent-700 transition-colors">
                                 Tài khoản
                             </Link>
-                            <Link to="/news" className="border-2 border-accent-600 text-accent-600 px-4 py-1.5 rounded-full text-sm text-center hover:bg-orange-50 transition-colors">
+                            <Link to="/news" className="border-2 border-accent-600 text-on-primary px-4 py-1.5 rounded-xl text-sm text-center bg-accent-700 transition-colors">
                                 Tin tức của Ditigon
                             </Link>
                         </div>

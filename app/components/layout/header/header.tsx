@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Menu, X, ShoppingCart, User, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
-import logo from "../../../assets/images/logo-light.png";
+import logo from "/assets/images/logo-light.png";
 
 import { HeaderData } from "./header.data";
 

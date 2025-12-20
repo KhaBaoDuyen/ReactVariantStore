@@ -1,5 +1,14 @@
 @import "../abstracts/colors";
 
+.bg-banner{
+    background: url(/assets/images/banner.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-button-gradient {
+    background: linear-gradient(162deg, rgba(255, 255, 255, 0.32) 7.03%, rgba(255, 255, 255, 0.08) 89.47%);
+}
 .bg-primary-50 {
     background-color: $primary-50;
 }
