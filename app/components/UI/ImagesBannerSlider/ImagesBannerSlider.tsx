@@ -21,7 +21,7 @@ export function CategoryBannerSlide() {
           640: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
-        className="category-swiper w-full"
+        className="category-swiper w-full mt-5"
       >
         {ImagesData.map((item, index) => (
           <SwiperSlide key={index}>
