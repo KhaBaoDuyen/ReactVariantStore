@@ -2,17 +2,38 @@ import logo from "/assets/images/logo-light.png";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router";
+import Slider from "react-slick";
 
 //COMPONENTS
 import TextType from '~/components/UI/TextType/textType';
 import { Button } from "~/components/UI/Button/button";
 import { ImagesZoom } from "~/components/UI/ImagesZoom";
 import SwipeToSlide from "~/components/UI/SwipeToSlide/SwipeToSlide";
-import { ImagesData } from "./home.data";
+import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
 
+//UTILS
+import { useMediaQuery } from "~/hooks/useMediaQuery";
+
+//DATA
+import bannerSection from "/assets/images/7f94849d8e8cb55e5d838a5bf3f187c61.png"
+import { ImagesData, SwipeCategoriesData, productFeatureds } from "./home.data";
+import { ProductFeaturedCard } from "~/components/UI/ProductFeaturedCard/ProductFeaturedCard";
 
 export default function HomePage() {
-  // const isMobile = useMediaQuery("(max-width: 1023px)");
+  const isMobile = useMediaQuery("(max-width: 1023px)");
+  
+  const getMobileSliderSettings = () => ({
+    dots: false,
+    arrows: false,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    rows: 2,
+    slidesPerRow: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+  });
 
   return (
     <>
@@ -99,17 +120,71 @@ export default function HomePage() {
 
       </div>
 
-      <div className="lg:w-10/12 lg:py-10 mx-auto "> 
+      <section className="lg:w-10/12 lg:py-10 mx-auto ">
         <SwipeToSlide />
-      </div>
+      </section>
 
-      <div className="lg:w-10/12 lg:py-10 mx-auto "> 
-        <Link to="">
-          <img src="" alt="" />
-        </Link>
-      </div>
+      <section className="w-10/12 mx-auto ">
+        <SwipeCategoriesSlide
+          data={SwipeCategoriesData} />
+      </section>
+
+      <section className=" lg:mt-5 bg-primary-600 pb-5">
+        <div className=" mx-auto bg-bannerSection">
+          <div className="lg:w-10/12 w-11/12 mx-auto py-10 flex flex-col gap-4 ">
+            <div className="">
+              <h2 className="text-2xl lg:text-4xl font-bold text-accent-600">
+                Sản phẩm nổi bật
+              </h2>
+              <p className="text-sm lg:text-base text-muted">
+                Những sản phẩm được khách hàng yêu thích nhất
+              </p>
+            </div>
+            <span className="flex lg:flex-row flex-col gap-4">
+              <Link className="px-3 py-1 w-fit hover:border-1 hover:bg-transparent hover:text-white rounded-md
+                bg-white/40" to="/products">#Sản Phẩm Bán Chạy Nhất</Link>
+              <Link className="px-3 py-1 w-fit hover:border-1 hover:bg-transparent hover:text-white rounded-md
+                bg-white/40" to="/products">Sản Phẩm Nhiều Đánh Giá</Link>
+            </span>
+          </div>
+        </div>
+
+        {isMobile ? (
+          <Slider {...getMobileSliderSettings()}>
+            {productFeatureds.slice(0, 8).map((i) => (
+              <div key={i.name} className="px-2">
+                <ProductFeaturedCard
+                  name={i.name}
+                  image={i.image}
+                  price={i.price}
+                  priceReduced={i.priceReduced}
+                  description={i.description}
+                  sold={i.sold}
+                />
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <div className="lg:w-10/12 w-11/12 mx-auto z-40 grid grid-cols-4 gap-3">
+            {productFeatureds.slice(0, 8).map((i) => (
+              <ProductFeaturedCard
+                key={i.name}
+                name={i.name}
+                image={i.image}
+                price={i.price}
+                priceReduced={i.priceReduced}
+                description={i.description}
+                sold={i.sold}
+              />
+            ))}
+
+            <Link to="/san-pham/thuong-hieu">
+            <img src="" alt="" /></Link>
+          </div>
+        )}
 
 
+      </section>
     </>
   );
 }

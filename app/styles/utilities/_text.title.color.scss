@@ -21,3 +21,9 @@
     font-family: 'Chakra Petch', sans-serif;
     line-height: 1.2;
 }
+.title-product{
+    color: white;
+    &:hover{
+        color: $accent-500;
+    }
+}
