@@ -1,0 +1,31 @@
+.brand-filter-slider {
+  .slick-track {
+    display: flex !important;
+    align-items: center;
+  }
+
+  .slick-slide {
+    display: flex !important;
+    justify-content: center;
+  }
+
+  .slick-slide > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .brand-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+  }
+
+  img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+}

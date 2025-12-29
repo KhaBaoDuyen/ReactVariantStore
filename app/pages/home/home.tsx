@@ -10,18 +10,21 @@ import { Button } from "~/components/UI/Button/button";
 import { ImagesZoom } from "~/components/UI/ImagesZoom";
 import SwipeToSlide from "~/components/UI/SwipeToSlide/SwipeToSlide";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
-
+import { BrandFilterSlider } from "~/components/UI/BrandFilterSlider/BrandFilterSlider";
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";
 
 //DATA
 import bannerSection from "/assets/images/7f94849d8e8cb55e5d838a5bf3f187c61.png"
-import { ImagesData, SwipeCategoriesData, productFeatureds } from "./home.data";
+import {
+  ImagesData, SwipeCategoriesData, productFeatureds,
+  BrandFilterSliderData
+} from "./home.data";
 import { ProductFeaturedCard } from "~/components/UI/ProductFeaturedCard/ProductFeaturedCard";
 
 export default function HomePage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
-  
+
   const getMobileSliderSettings = () => ({
     dots: false,
     arrows: false,
@@ -165,21 +168,25 @@ export default function HomePage() {
             ))}
           </Slider>
         ) : (
-          <div className="lg:w-10/12 w-11/12 mx-auto z-40 grid grid-cols-4 gap-3">
-            {productFeatureds.slice(0, 8).map((i) => (
-              <ProductFeaturedCard
-                key={i.name}
-                name={i.name}
-                image={i.image}
-                price={i.price}
-                priceReduced={i.priceReduced}
-                description={i.description}
-                sold={i.sold}
-              />
-            ))}
+          <div className="lg:w-10/12 w-11/12 mx-auto">
+            <div className=" z-40 grid grid-cols-4 gap-3">
+              {productFeatureds.slice(0, 8).map((i) => (
+                <ProductFeaturedCard
+                  key={i.name}
+                  name={i.name}
+                  image={i.image}
+                  price={i.price}
+                  priceReduced={i.priceReduced}
+                  description={i.description}
+                  sold={i.sold}
+                />
+              ))}
+            </div>
+            <div className="pt-5">
+              <BrandFilterSlider brand={BrandFilterSliderData} />
+            </div>
 
-            <Link to="/san-pham/thuong-hieu">
-            <img src="" alt="" /></Link>
+
           </div>
         )}
 
