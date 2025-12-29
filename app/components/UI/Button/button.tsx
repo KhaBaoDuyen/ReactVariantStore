@@ -1,0 +1,41 @@
+import type {ButtonProps} from "./button.type";
+
+export const Button = ({
+  children,
+  icon,
+  iconPosition = "right",
+  variant = "solid",
+  color = "accent-600",
+  className = "",
+  onClick,
+}: ButtonProps) => {
+  const baseStyle =
+    "px-5 py-2 w-fit rounded-md flex items-center justify-center gap-3 font-medium transition-all duration-300";
+
+ const variantStyle =
+    variant === "solid"
+      ? `bg-${color} text-white hover:opacity-90`
+      : `border border-${color} text-${color} bg-transparent  hover:text-white`;
+
+  return (
+  <button
+    onClick={onClick}
+    className={`${baseStyle} ${variantStyle} ${className} group`}
+  >
+    {icon && iconPosition === "left" && (
+      <span className="transition-transform duration-300 group-hover:-translate-x-1">
+        {icon}
+      </span>
+    )}
+
+    <span>{children}</span>
+
+    {icon && iconPosition === "right" && (
+      <span className="transition-transform duration-300 group-hover:translate-x-1">
+        {icon}
+      </span>
+    )}
+  </button>
+);
+
+};

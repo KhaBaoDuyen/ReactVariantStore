@@ -9,10 +9,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export const ProductByCategogy = ({ image, name, path }: ProductByCategogyProps) => {
     return (
         <>
-            <Link to={path} className="block w-[15em] h-[15em] group overflow-hidden p-5">
+            <Link to={path} className="block w-[15em] bg-surface-50  rounded-xl h-[15em] group overflow-hidden p-6">
                 <img src={image} alt={name} className="w-full h-full object-cover mx-auto group-hover:scale-110  mb-4 rounded-md" />
-                <h3 className="-translate-y-20 text-lg font-semibold text-center text-primary
-                      p-1 group-hover:-translate-y-15 transform  
+                <h3 className="-translate-y-8 w-full text-lg font-semibold text-center text-primary
+                      p-1 group-hover:-translate-y-15 group-hover:bg-white/40 transform  
                     transition-transform duration-300 ease-out">{name}</h3>
             </Link>
         </>
@@ -21,7 +21,7 @@ export const ProductByCategogy = ({ image, name, path }: ProductByCategogyProps)
 
 export const SliderProductByCategogy = () => {
     return (
-        <div className="relative hover:[&_button]:opacity-100">
+        <div className="relative w-full hover:[&_button]:opacity-100">
             <Swiper
                 grabCursor
                 modules={[Navigation]}
@@ -29,11 +29,11 @@ export const SliderProductByCategogy = () => {
                     prevEl: ".swiper-button-prev-custom",
                     nextEl: ".swiper-button-next-custom",
                 }}
-                spaceBetween={20}
+                spaceBetween={70}
                 breakpoints={{
                     0: { slidesPerView: 2 },
                     640: { slidesPerView: 3 },
-                    1024: { slidesPerView: 5 },
+                    1024: { slidesPerView: 6 },
                 }}
             >
                 {ProductByCategogyData.map((p, index) => (
@@ -70,9 +70,8 @@ export const SliderProductByCategogy = () => {
           flex items-center justify-center
           opacity-0 transition-opacity duration-300
           hover:bg-primary 
-        "
-            >
-                ›
+        ">
+               <ChevronRight />
             </button>
         </div>
     );
