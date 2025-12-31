@@ -36,7 +36,7 @@ export default function ProductPage() {
                 <Search showOnMobile={true} width="w-12/12" />
               </span>
               <span className="flex flex-wrap lg:w-6/12 w-10/12 justify-center mt-5 lg:gap-3 gap-2">
-                {BRAND_DATA.map((button, index) => (
+                {BRAND_DATA.slice(0, 10).map((button, index) => (
                   <ButtonAnimation
                     key={index}
                     name={button.name}

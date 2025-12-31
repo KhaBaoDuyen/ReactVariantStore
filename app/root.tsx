@@ -17,6 +17,8 @@ import "./styles/main.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import bannerFooter from "/assets/images/banner-footer.png";
+
 import { Header } from "./components/layout/header/header";
 import { Footer } from "./components/layout/footer/footer";
 export const links: Route.LinksFunction = () => [
@@ -30,7 +32,7 @@ export const links: Route.LinksFunction = () => [
 		rel: "stylesheet",
 		href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
 	},
-	{rel: "icon", href: "/assets/images/logoTab.png" },
+	{ rel: "icon", href: "/assets/images/logoTab.png" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -41,9 +43,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<Meta />
 				<Links />
-				
+
 			</head>
-			<body>
+			<body >
 				{children}
 				<ScrollRestoration />
 				<Scripts />
@@ -53,17 +55,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-	return (
-		<div className="flex min-h-screen flex-col">
- 			<Header />
+  return (
+    <div className="flex min-h-screen flex-col bg-primary-100">
+      <Header />
 
- 			<main className="flex-1">
-				<Outlet />
-			</main>
+      <main className="relative flex-1 overflow-hidden">
+         <div className="relative z-10">
+          <Outlet />
+        </div>
+         <img
+          src={bannerFooter}
+          alt=""
+          className="pointer-events-none absolute bottom-0 left-0 z-0 w-full"
+        />
+      </main>
 
- 			<Footer />
-		</div>);
+      <Footer />
+    </div>
+  );
 }
+
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 	let message = "Oops!";

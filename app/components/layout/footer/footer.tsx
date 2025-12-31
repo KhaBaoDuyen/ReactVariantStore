@@ -8,7 +8,7 @@ import { Button } from "~/components/UI/Button/button";
 
 export const Footer = () => {
     return (
-        <footer className="bg-primary-700 text-white py-10 mt-8">
+        <footer className="bg-primary-700 text-white py-10 p">
             <div className="w-11/12 lg:w-10/12 mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
 
