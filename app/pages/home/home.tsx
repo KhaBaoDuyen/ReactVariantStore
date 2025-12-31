@@ -204,7 +204,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="grid grid-cols-4 py-5 lg:w-10/12 mx-auto gap-5 hidden lg:block">
+      <div className="hidden lg:grid grid-cols-4 py-5 lg:w-10/12 mx-auto gap-5">
         <div className="col-span-2 overflow-hidden group rounded-xl h-[15rem]">
           <img src="./assets/images/tlc_keyboards_banner_k60protkl_2a7cf6e5a327492287d04a71350fe4de.jpg" alt=""
             className=" group-hover:scale-125 h-full w-full object-cover " />
@@ -221,7 +221,11 @@ export default function HomePage() {
 
       <section className=" lg:mt-5 bg-primary-500 py-10">
         <span className="lg:w-10/12 w-11/12 mx-auto grid lg:grid-cols-2">
-          <div className="flex flex-col gap-2">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col gap-2">
             <h1 className="text-accent-700 font-bold text-xl">Về YEJARA</h1>
             <p className="text-on-primary">Lý do khách hàng tin tưởng chúng tôi.</p>
             <h1 className="text-accent-500 lg:text-4xl font-bold">Không chỉ bán sản phẩm – Chúng tôi mang đến trải nghiệm.</h1>
@@ -239,7 +243,7 @@ export default function HomePage() {
               className="mt-5">
               Xem Thông Tin Về Yejara
             </Button>
-          </div>
+          </motion.div>
           <div className="lg:block hidden">
             <ImagesStack
               sensitivity={190}
