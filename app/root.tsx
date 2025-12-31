@@ -8,12 +8,15 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import "./app.css";
-import "./styles/main.scss";
+// css
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "./app.css";
+import "./styles/main.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 import { Header } from "./components/layout/header/header";
 import { Footer } from "./components/layout/footer/footer";
 export const links: Route.LinksFunction = () => [

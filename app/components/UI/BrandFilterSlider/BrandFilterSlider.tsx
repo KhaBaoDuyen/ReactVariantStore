@@ -18,8 +18,10 @@ export const BrandFilterSlider = ({
     const settings = {
         dots: false,
         arrows: false,
-        infinite: false,
-        speed: 500,
+        infinite: true,
+        autoplay: true,        
+        autoplaySpeed: 5000,   
+        speed: 600,
         slidesToShow,
         slidesToScroll,
     };

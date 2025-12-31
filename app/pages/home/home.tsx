@@ -11,11 +11,15 @@ import { ImagesZoom } from "~/components/UI/ImagesZoom";
 import SwipeToSlide from "~/components/UI/SwipeToSlide/SwipeToSlide";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
 import { BrandFilterSlider } from "~/components/UI/BrandFilterSlider/BrandFilterSlider";
+import { SwiperBlogSlide } from "~/components/UI/SwiperBlogSlide/SwiperBlogSlide";
+import ImagesStack from "~/components/UI/ImagesStack/ImagesStack";
+import { FeatureSection } from "~/components/UI/FeatureCard/FeatureSection";
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";
 
 //DATA
-import bannerSection from "/assets/images/7f94849d8e8cb55e5d838a5bf3f187c61.png"
+import bannerSection from "/assets/images/7f94849d8e8cb55e5d838a5bf3f187c61.png";
+import { BLOG_DATA } from "~/data/blogs.data";
 import {
   ImagesData, SwipeCategoriesData, productFeatureds,
   BrandFilterSliderData
@@ -120,7 +124,6 @@ export default function HomePage() {
           </div>
 
         </span>
-
       </div>
 
       <section className="lg:w-10/12 lg:py-10 mx-auto ">
@@ -134,7 +137,7 @@ export default function HomePage() {
 
       <section className=" lg:mt-5 bg-primary-600 pb-5">
         <div className=" mx-auto bg-bannerSection">
-          <div className="lg:w-10/12 w-11/12 mx-auto py-10 flex flex-col gap-4 ">
+          <div className="lg:w-10/12 w-11/12 mx-auto py-4 lg:py-10 flex flex-col gap-4 ">
             <div className="">
               <h2 className="text-2xl lg:text-4xl font-bold text-accent-600">
                 Sản phẩm nổi bật
@@ -143,7 +146,7 @@ export default function HomePage() {
                 Những sản phẩm được khách hàng yêu thích nhất
               </p>
             </div>
-            <span className="flex lg:flex-row flex-col gap-4">
+            <span className="flex lg:flex-row flex-col gap-3">
               <Link className="px-3 py-1 w-fit hover:border-1 hover:bg-transparent hover:text-white rounded-md
                 bg-white/40" to="/products">#Sản Phẩm Bán Chạy Nhất</Link>
               <Link className="px-3 py-1 w-fit hover:border-1 hover:bg-transparent hover:text-white rounded-md
@@ -155,7 +158,7 @@ export default function HomePage() {
         {isMobile ? (
           <Slider {...getMobileSliderSettings()}>
             {productFeatureds.slice(0, 8).map((i) => (
-              <div key={i.name} className="px-2">
+              <div key={i.name} className="py-1">
                 <ProductFeaturedCard
                   name={i.name}
                   image={i.image}
@@ -189,9 +192,66 @@ export default function HomePage() {
 
           </div>
         )}
-
-
       </section>
+
+      <section className="py-5 flex flex-col justify-center items-center gap-2">
+        <span className="text-center">
+          <h1 className="lg:text-2xl text-md title-primary-600 text-center"> Cập nhật nổi bật</h1>
+          <p className="text-muted ">Những bài viết vừa được đăng tải từ đội ngũ của chúng tôi.</p>
+        </span>
+        <div className=" lg:w-10/12 w-11/12">
+          <SwiperBlogSlide blogs={BLOG_DATA} />
+        </div>
+      </section>
+
+      <div className="grid grid-cols-4 py-5 lg:w-10/12 mx-auto gap-5 hidden lg:block">
+        <div className="col-span-2 overflow-hidden group rounded-xl h-[15rem]">
+          <img src="./assets/images/tlc_keyboards_banner_k60protkl_2a7cf6e5a327492287d04a71350fe4de.jpg" alt=""
+            className=" group-hover:scale-125 h-full w-full object-cover " />
+        </div>
+        <div className="overflow-hidden group rounded-xl h-[15rem]">
+          <img src="./assets/images/20-1730801598133.jpg" alt=""
+            className=" group-hover:scale-125 h-full w-full object-cover " />
+        </div>
+        <div className="overflow-hidden group rounded-xl h-[15rem]">
+          <img src="./assets/images/ips_banner_1920x680_801fccb12fa947bfb0eda431877d620e.jpg" alt=""
+            className=" group-hover:scale-125 h-full w-full object-cover " />
+        </div>
+      </div>
+
+      <section className=" lg:mt-5 bg-primary-500 py-10">
+        <span className="lg:w-10/12 w-11/12 mx-auto grid lg:grid-cols-2">
+          <div className="flex flex-col gap-2">
+            <h1 className="text-accent-700 font-bold text-xl">Về YEJARA</h1>
+            <p className="text-on-primary">Lý do khách hàng tin tưởng chúng tôi.</p>
+            <h1 className="text-accent-500 lg:text-4xl font-bold">Không chỉ bán sản phẩm – Chúng tôi mang đến trải nghiệm.</h1>
+            <p className="text-on-primary">Chúng tôi chuyên cung cấp bàn phím, chuột và phụ kiện công nghệ chính hãng,
+              được chọn lọc kỹ lưỡng về chất lượng, độ bền và hiệu năng.
+              Mỗi sản phẩm đều phù hợp cho làm việc, học tập và gaming,
+              giúp bạn yên tâm sử dụng lâu dài.</p>
+
+            <Button
+              icon={<ChevronRight className="w-5 h-5 text-accent-600" />}
+              iconPosition="right"
+              onClick={() => console.log("Chuyen huong trang den trang sap pham")}
+              color={"accent-600"}
+              variant="outline"
+              className="mt-5">
+              Xem Thông Tin Về Yejara
+            </Button>
+          </div>
+          <div className="lg:block hidden">
+            <ImagesStack
+              sensitivity={190}
+              autoplay
+              pauseOnHover
+            />
+          </div>
+        </span>
+      </section>
+
+
+      <FeatureSection />
     </>
   );
 }
