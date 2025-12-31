@@ -19,8 +19,8 @@ export const BrandFilterSlider = ({
         dots: false,
         arrows: false,
         infinite: true,
-        autoplay: true,        
-        autoplaySpeed: 5000,   
+        autoplay: true,
+        autoplaySpeed: 5000,
         speed: 600,
         slidesToShow,
         slidesToScroll,
@@ -32,11 +32,21 @@ export const BrandFilterSlider = ({
                 <div key={item.name}>
                     <Link
                         to={`/thuong-hieu/${item.name}`}
-                        className="brand-item"
+                        className="brand-item flex items-center gap-2 text-center"
                     >
-                        <img src={item.image} alt={item.name} />
-                        <p className="text-muted text-accent-600-hover">{item.name}</p>
+                        <div className="w-10 h-10  overflow-hidden">
+                            <img
+                                src={item.image}
+                                alt={item.name}
+                                className="w-full h-full object-fill"
+                            />
+                        </div>
+
+                        <p className="text-muted text-accent-600-hover">
+                            {item.name}
+                        </p>
                     </Link>
+
                 </div>
             ))}
         </Slider>

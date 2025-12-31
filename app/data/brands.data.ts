@@ -1,0 +1,17 @@
+export const BRAND_DATA = [
+  { name: "Logitech", image: "/assets/images/brands/Logitech.png" },
+  { name: "Razer", image: "/assets/images/brands/Razer.png" },
+  { name: "Corsair", image: "/assets/images/brands/Corsair.png" },
+  { name: "SteelSeries", image: "/assets/images/brands/SteelSeries.png" },
+  { name: "HyperX", image: "/assets/images/brands/HyperX.png" },
+  { name: "Aula", image: "/assets/images/brands/aula.png" },
+  { name: "Asus", image: "/assets/images/brands/Asus.png" },
+  { name: "Acer", image: "/assets/images/brands/acer.jpg" },
+  { name: "Dell", image: "/assets/images/brands/Dell.png" },
+  { name: "LG", image: "/assets/images/brands/lg.jpg" },
+  { name: "Akko", image: "/assets/images/brands/akko.jpg" },
+  { name: "Keychron", image: "/assets/images/brands/keychron.jpg" },
+  { name: "Rapoo", image: "/assets/images/brands/rapoo.jpg" },
+  { name: "Zowie", image: "/assets/images/brands/zowie.png" },
+  { name: "Glorious", image: "/assets/images/brands/glorious.png" },
+];

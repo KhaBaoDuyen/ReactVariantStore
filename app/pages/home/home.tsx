@@ -18,14 +18,12 @@ import { FeatureSection } from "~/components/UI/FeatureCard/FeatureSection";
 import { useMediaQuery } from "~/hooks/useMediaQuery";
 
 //DATA
-import bannerSection from "/assets/images/7f94849d8e8cb55e5d838a5bf3f187c61.png";
+import { ImagesData,} from "./home.data";
 import { BLOG_DATA } from "~/data/blogs.data";
-import {
-  ImagesData, SwipeCategoriesData, productFeatureds,
-  BrandFilterSliderData
-} from "./home.data";
+import { PRODUCTS_DATA } from "~/data/products.data";
+import { CATEGOGY_DATA } from "~/data/categories.data";
+import { BRAND_DATA } from "~/data/brands.data";
 import { ProductFeaturedCard } from "~/components/UI/ProductFeaturedCard/ProductFeaturedCard";
-
 export default function HomePage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
 
@@ -132,7 +130,7 @@ export default function HomePage() {
 
       <section className="w-10/12 mx-auto ">
         <SwipeCategoriesSlide
-          data={SwipeCategoriesData} />
+          data={CATEGOGY_DATA} />
       </section>
 
       <section className=" lg:mt-5 bg-primary-600 pb-5">
@@ -157,7 +155,7 @@ export default function HomePage() {
 
         {isMobile ? (
           <Slider {...getMobileSliderSettings()}>
-            {productFeatureds.slice(0, 8).map((i) => (
+            {PRODUCTS_DATA.slice(0, 8).map((i) => (
               <div key={i.name} className="py-1">
                 <ProductFeaturedCard
                   name={i.name}
@@ -173,7 +171,7 @@ export default function HomePage() {
         ) : (
           <div className="lg:w-10/12 w-11/12 mx-auto">
             <div className=" z-40 grid grid-cols-4 gap-3">
-              {productFeatureds.slice(0, 8).map((i) => (
+              {PRODUCTS_DATA.slice(0, 8).map((i) => (
                 <ProductFeaturedCard
                   key={i.name}
                   name={i.name}
@@ -186,7 +184,7 @@ export default function HomePage() {
               ))}
             </div>
             <div className="pt-5">
-              <BrandFilterSlider brand={BrandFilterSliderData} />
+              <BrandFilterSlider brand={BRAND_DATA } />
             </div>
 
 
@@ -194,9 +192,9 @@ export default function HomePage() {
         )}
       </section>
 
-      <section className="py-5 flex flex-col justify-center items-center gap-2">
+      <section className="py-5 flex mt-3 flex-col justify-center items-center gap-2">
         <span className="text-center">
-          <h1 className="lg:text-2xl text-md title-primary-600 text-center"> Cập nhật nổi bật</h1>
+          <h1 className="lg:text-3xl text-md title-primary-600 text-center"> Cập nhật nổi bật</h1>
           <p className="text-muted ">Những bài viết vừa được đăng tải từ đội ngũ của chúng tôi.</p>
         </span>
         <div className=" lg:w-10/12 w-11/12">
