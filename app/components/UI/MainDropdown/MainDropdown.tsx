@@ -16,8 +16,7 @@ export const MainDropdown = ({
 
     return (
         <div className="relative group mx-4">
-            {/* Trigger Link */}
-            <Link to={path} className="font-semibold flex items-center gap-1 py-4 hover:text-accent-600 transition-colors">
+             <Link to={path} className="font-semibold flex items-center gap-1 py-4 hover:text-accent-600 transition-colors">
                 {title}
                 {hasDropdown && (
                     <ChevronDown
@@ -45,7 +44,7 @@ export const MainDropdown = ({
                                         <Link 
                                             key={i} 
                                             to={item.path} 
-                                            className="hover:text-orange-500 transition-colors whitespace-nowrap text-md"
+                                            className="hover:text-orange-500 capitalize transition-colors whitespace-nowrap text-md"
                                         >
                                             {item.name}
                                         </Link>
@@ -77,7 +76,7 @@ export const MainDropdown = ({
                                     <Link key={i} to={brand.path} className="flex items-center gap-2 hover:text-orange-500 transition-colors">
                                         <div className="w-5 h-5 bg-gray-200 rounded-sm flex-shrink-0">
                                             {brand.image ? (
-                                                <img src={brand.image} alt={brand.name} className="w-full h-full object-contain" />
+                                                <img src={`/assets/images/brands/${brand.image}`} alt={brand.name} className="w-full h-full object-contain" />
                                             ) : (
                                                 <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">
                                                     N/A

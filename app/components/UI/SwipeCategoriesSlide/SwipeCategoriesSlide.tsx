@@ -28,7 +28,7 @@ export const SwipeCategoriesSlide = ({ data }: SwipeCategorieProps) => {
         {data.map((item) => (
           <div key={item.id} className="flex justify-center group px-2">
             <Link
-              to={item.path}
+              to={item.slug}
               className="flex flex-col items-center justify-center"
             >
               <img

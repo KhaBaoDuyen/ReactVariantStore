@@ -2,7 +2,7 @@ export type CategoryItem = {
   id: number;
   title: string;
   image: string;
-  path: string;
+  slug: string;
 };
 
 export type SwipeCategorieProps = {

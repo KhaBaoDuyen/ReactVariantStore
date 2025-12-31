@@ -1,11 +1,11 @@
 export const dataButton = [
-    { name: "Logitech", path: "/logitech", imageAlt: "/Logitech.png" },
-    { name: "Razer", path: "/razer", imageAlt: "/Razer.png" },
-    { name: "Corsair", path: "/corsair", imageAlt: "/Corsair.png" },
-    { name: "SteelSeries", path: "/steelseries", imageAlt: "/SteelSeries.png" },
-    { name: "HyperX", path: "/hyperx", imageAlt: "/HyperX.png" },
-    { name: "Microsoft", path: "/microsoft", imageAlt: "/Microsoft.png" },
-    { name: "Apple", path: "/apple", imageAlt: "/Apple.png" },
-    { name: "Asus", path: "/asus", imageAlt: "/Asus.png" },
-    { name: "Dell", path: "/dell", imageAlt: "/Dell.png" }
+    { name: "Logitech", slug: "/logitech", imageAlt: "/Logitech.png" },
+    { name: "Razer", slug: "/razer", imageAlt: "/Razer.png" },
+    { name: "Corsair", slug: "/corsair", imageAlt: "/Corsair.png" },
+    { name: "SteelSeries", slug: "/steelseries", imageAlt: "/SteelSeries.png" },
+    { name: "HyperX", slug: "/hyperx", imageAlt: "/HyperX.png" },
+    { name: "Microsoft", slug: "/microsoft", imageAlt: "/Microsoft.png" },
+    { name: "Apple", slug: "/apple", imageAlt: "/Apple.png" },
+    { name: "Asus", slug: "/asus", imageAlt: "/Asus.png" },
+    { name: "Dell", slug: "/dell", imageAlt: "/Dell.png" }
 ]

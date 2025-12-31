@@ -13,6 +13,7 @@ import { useMediaQuery } from "~/hooks/useMediaQuery";
 
 //DATA
 import { dataButton } from "./product.data";
+import { BRAND_DATA } from "~/data/brands.data";
 
 export default function ProductPage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
@@ -35,12 +36,12 @@ export default function ProductPage() {
                 <Search showOnMobile={true} width="w-12/12" />
               </span>
               <span className="flex flex-wrap lg:w-6/12 w-10/12 justify-center mt-5 lg:gap-3 gap-2">
-                {dataButton.map((button, index) => (
+                {BRAND_DATA.map((button, index) => (
                   <ButtonAnimation
                     key={index}
                     name={button.name}
-                    path={button.path}
-                    imageAlt={button.imageAlt} />
+                    path={button.slug}
+                    imageAlt={button.image} />
                 ))}
               </span>
             </div>

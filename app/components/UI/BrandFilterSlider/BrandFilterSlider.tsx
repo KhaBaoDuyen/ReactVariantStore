@@ -36,7 +36,7 @@ export const BrandFilterSlider = ({
                     >
                         <div className="w-10 h-10  overflow-hidden">
                             <img
-                                src={item.image}
+                                src={`/assets/images/brands/${item.image}`}
                                 alt={item.name}
                                 className="w-full h-full object-fill"
                             />

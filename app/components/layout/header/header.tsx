@@ -12,6 +12,7 @@ import { Search } from "~/components/UI/Search";
 import { MainDropdown } from "~/components/UI/MainDropdown/MainDropdown";
 import { MobileMenuItem } from "~/components/UI/Mobile/MobileMenuItem/MobileMenuItem";
 
+//DATA
 
 export const Header = () => {
     const cartCount = 3;
