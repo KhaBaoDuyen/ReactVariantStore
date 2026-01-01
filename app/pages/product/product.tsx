@@ -19,8 +19,8 @@ export default function ProductPage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
 
   return (
-    <>
-      <div className=" h-full">
+    <div className="bg-white">
+      <div className="h-full bg-primary-100 rounded-b-2xl">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -52,44 +52,18 @@ export default function ProductPage() {
         lg:p-5 rounded-md lg:rounded-3xl  bg-white to-transparent">
           {isMobile ? <CategoryBannerSlide /> : <ImagesForcus />}
         </div>
+
+        <div className="">
+          
+        </div>
       </div>
 
-      {/* <div className="mb-10  mx-auto py-5 lg:w-full w-11/12">
-        <SliderProductByCategogy />
-      </div> */}
+      <div className=" mx-auto w-11/12 lg:w-full grid grid-cols-4 h-full bg-primary-600">
+              <div className="col-spans-1">
 
-      <div className=" x-auto w-11/12 lg:w-full h-full bg-primary-600">
-           <img
-            src="/assets/images/7f94849d8e8cb55e5d838a5bf3f187c61.png"
-            alt="Sản phẩm nổi bật"
-            className="w-full h-full object-cover "
-          />
-
-          <div className="-translate-y-30 lg:w-10/12 mx-auto inset-0 flex flex-col gap-2 text-white">
-            <h2 className="text-2xl lg:text-4xl font-bold mb-2 text-accent-600">
-              Sản phẩm nổi bật
-            </h2>
-            <p className="text-sm lg:text-base text-muted">
-              Những sản phẩm được khách hàng yêu thích nhất
-            </p>
-            <span className="flex gap-5">
-               <Link className="px-3 py-1 border-1 hover:bg-transparent rounded-md
-                bg-white/40" to="/products">#Sản Phẩm Bán Chạy Nhất</Link>
-               <Link className="px-3 py-1 border-1 hover:bg-transparent rounded-md
-                bg-white/40" to="/products">Sản Phẩm Nhiều Đánh Giá</Link>
-            </span>
-            <span className="">
-              <Link to="/products/chuot">
-                <img
-                  src="/assets/images/4f3b2f2f6f6f1e2f5e8e4c3b2a1d0c9b1.png"
-                  alt="Sản phẩm nổi bật"
-                  className="w-full h-full object-cover mt-5 rounded-lg shadow-lg"
-                />
-              </Link>
-            </span>
-         </div>
+              </div>
       </div>
 
-    </>
+    </div>
   );
 }

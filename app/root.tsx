@@ -21,6 +21,8 @@ import bannerFooter from "/assets/images/banner-footer.png";
 
 import { Header } from "./components/layout/header/header";
 import { Footer } from "./components/layout/footer/footer";
+import { ScrollToTopButton } from "~/components/UI/ScrollToTopButton/ScrollToTopButton";
+
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
 	{
@@ -68,6 +70,7 @@ export default function App() {
           alt=""
           className="pointer-events-none absolute bottom-0 left-0 z-0 w-full"
         />
+		<ScrollToTopButton />
       </main>
 
       <Footer />
