@@ -7,6 +7,7 @@ import { ButtonAnimation } from "~/components/UI/ButtonAnimation/buttonAnimation
 import { ImagesForcus } from "~/components/UI/ImagesForcus/ImagesForcus";
 import { CategoryBannerSlide } from "~/components/UI/ImagesBannerSlider/ImagesBannerSlider";
 import { ProductByCategogy, SliderProductByCategogy } from "~/components/UI/ProductByCategogy/ProductByCategogy";
+import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
 
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";
@@ -14,6 +15,7 @@ import { useMediaQuery } from "~/hooks/useMediaQuery";
 //DATA
 import { dataButton } from "./product.data";
 import { BRAND_DATA } from "~/data/brands.data";
+import { CATEGOGY_DATA } from "~/data/categories.data";
 
 export default function ProductPage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
@@ -53,15 +55,18 @@ export default function ProductPage() {
           {isMobile ? <CategoryBannerSlide /> : <ImagesForcus />}
         </div>
 
-        <div className="">
-          
+        <div className=" mx-auto w-11/12 lg:w-10/12">
+          <SwipeCategoriesSlide
+            data={CATEGOGY_DATA}
+            type="image"
+            variant="six" />
         </div>
       </div>
 
       <div className=" mx-auto w-11/12 lg:w-full grid grid-cols-4 h-full bg-primary-600">
-              <div className="col-spans-1">
+        <div className="col-spans-1">
 
-              </div>
+        </div>
       </div>
 
     </div>

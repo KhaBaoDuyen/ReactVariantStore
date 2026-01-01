@@ -9,4 +9,5 @@ export type CategoryItem = {
 export type SwipeCategorieProps = {
   data: CategoryItem[];
   type?: "icon" | "image";
+  variant?: "default" | "six";
 };
