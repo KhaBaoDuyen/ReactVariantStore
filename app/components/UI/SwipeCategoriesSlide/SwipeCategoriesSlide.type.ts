@@ -1,10 +1,12 @@
 export type CategoryItem = {
   id: number;
   title: string;
-  image: string;
+  icon?: string;
+  image?: string;
   slug: string;
 };
 
 export type SwipeCategorieProps = {
-   data: CategoryItem[];
+  data: CategoryItem[];
+  type?: "icon" | "image";
 };
