@@ -5,6 +5,11 @@ import { Link } from "react-router";
 
 //COMPONENT
 import { Search } from "~/components/UI/Search";
+import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
+
+
+//DATA
+import { CATEGOGY_DATA } from "~/data/categories.data";
 
 export default function BlogPage() {
     return (
@@ -27,6 +32,12 @@ export default function BlogPage() {
                     </div>
                 </div>
             </motion.div>
+             <div className=" mx-auto w-11/12 py-6 lg:w-10/12">
+                      <SwipeCategoriesSlide
+                        data={CATEGOGY_DATA}
+                        type="image"
+                        variant="six" />
+                    </div>
         </div>
     )
 }
