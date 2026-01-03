@@ -16,8 +16,8 @@ export const ProductCard = ({
 }: productProp) => {
     return (
         <>
-            <Link to={slug} className="shadow-lg rounded-md group hover:shadow-2xl overflow-hidden">
-                <div className="w-full h-[12rem] overflow-hidden">
+            <Link to={slug} className=" shadow-md border-1 border-gray-100 rounded-md group hover:shadow-2xl overflow-hidden">
+                <div className="w-full h-[12rem] overflow-hidden rounded-2xl">
                     <img src={`/assets/images/products/${image}`} alt={`Ảnh sản phẩm ${image}`}
                         className="w-full group-hover:scale-125 transition-transform duration-500
                         ease-out" />
