@@ -67,8 +67,8 @@ export default function ProductPage() {
         </div>
       </div>
 
-      <div className="relative mx-auto w-11/12 py-5 lg:w-10/12 grid grid-cols-4 h-full bg-white">
-        <aside className="col-span-1 flex flex-col gap-5">
+      <div className="relative mx-auto w-12/12 py-5 lg:w-10/12 grid lg:grid-cols-4 h-full bg-white">
+        <aside className="col-span-1 flex flex-col gap-5 hidden lg:block">
           <div className="sticky top-40 border-2 rounded-xl p-5 shadow-xl h-fit">
             <h1 className="text-2xl font-bold ">Danh Mục Sản Phẩm</h1>
             <hr className="h-[2px] border-none bg-gradient-to-r from-[#1E2746] to-transparent blur-[0.2px] my-3" />
@@ -92,17 +92,16 @@ export default function ProductPage() {
             <h1 className="text-2xl font-bold ">Liên hệ chúng tôi</h1>
             <hr className="h-[2px] border-none bg-gradient-to-r from-[#1E2746] to-transparent blur-[0.2px] my-3" />
              <ContactGroup />
-      
           </div>
         </aside>
 
-        <div className="col-span-3 px-5">
+        <div className="lg:col-span-3 w-full px-5">
           <div className="flex justify-between items-center">
             <h1 className="text-xl font-bold">Tất cả</h1>
             <SortDropdown onChange={(value) => console.log(value)} />
           </div>
 
-          <div className="grid grid-cols-4 gap-5 mt-5">
+          <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 mt-5">
             {PRODUCTS_DATA.map(p => (
               <ProductCard
                 key={p.slug}

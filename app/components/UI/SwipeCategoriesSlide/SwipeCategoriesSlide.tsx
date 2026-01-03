@@ -19,23 +19,22 @@ export const SwipeCategoriesSlide = ({
   const isMobile = useMediaQuery("(max-width: 399px)");
   const isTablet = useMediaQuery("(min-width: 400px) and (max-width: 599px)");
 
-  const slidesToShow =
-    variant === "six"
-      ? 6
-      : isMobile
-        ? 3
-        : isTablet
-          ? 5
-          : 7;
+  const slidesToShow = isMobile
+    ? 2
+    : isTablet
+      ? 5
+      : variant === "six"
+        ? 6
+        : 7;
 
-  const slidesToScroll =
-    variant === "six"
-      ? 1
-      : isMobile
+  const slidesToScroll = isMobile
+    ? 1
+    : isTablet
+      ? 2
+      : variant === "six"
         ? 1
-        : isTablet
-          ? 2
-          : 4;
+        : 4;
+
 
   const settings = {
     dots: false,
