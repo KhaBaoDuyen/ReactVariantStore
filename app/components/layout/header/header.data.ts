@@ -28,10 +28,6 @@ export const HeaderData: HeaderGroup[] = [
         ]
     },
     {
-        title: "Giới thiệu",
-        path: "/gioi-thieu",
-    },
-    {
         title: "Hệ thống cửa hàng",
         path: "/he-thong-cua-hang",
     },
