@@ -8,6 +8,7 @@ import { ImagesForcus } from "~/components/UI/ImagesForcus/ImagesForcus";
 import { CategoryBannerSlide } from "~/components/UI/ImagesBannerSlider/ImagesBannerSlider";
 import { ProductByCategogy, SliderProductByCategogy } from "~/components/UI/ProductByCategogy/ProductByCategogy";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
+import {SortDropdown} from "~/components/UI/SortDropdown/SortDropdown";
 
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";
@@ -63,9 +64,16 @@ export default function ProductPage() {
         </div>
       </div>
 
-      <div className=" mx-auto w-11/12 lg:w-full grid grid-cols-4 h-full bg-primary-600">
+      <div className=" mx-auto w-11/12 py-4 lg:w-10/12 grid grid-cols-4 h-full bg-white">
         <div className="col-spans-1">
+             
+        </div>
 
+        <div className="col-span-3">
+          <div className="flex justify-between items-center">
+            <h1 className="text-xl font-bold">Tất cả</h1>
+            <SortDropdown onClick={"lọc"}/>
+          </div>
         </div>
       </div>
 
