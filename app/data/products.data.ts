@@ -1,6 +1,6 @@
 export const PRODUCTS_DATA = [
   {
-    name: "Bàn phím cơ Keychron K8 Pro",
+    name: "Bàn phím cơ Keychron K8 Pro 1",
     slug: "ban-phim-co-keychron-k8-pro",
     image: "keyboard-1.jpg",
     price: 2590000,
@@ -93,7 +93,7 @@ export const PRODUCTS_DATA = [
     sold: 9400,
   },
   {
-    name: "Chuột Razer DeathAdder V3 Pro",
+    name: "Chuột Razer DeathAdder V3 Pro 12",
     slug: "chuot-razer-deathadder-v3-pro",
     image: "mouse-2.jpg",
     price: 4290000,
@@ -109,30 +109,5 @@ export const PRODUCTS_DATA = [
     rating: 4.6,
     sold: 7600,
   },
-  {
-    name: "Chuột SteelSeries Aerox 3 Wireless",
-    slug: "chuot-steelseries-aerox-3-wireless",
-    image: "mouse-3.jpg",
-    price: 2790000,
-    salePrice: 2390000,
-    rating: 4.4,
-    sold: 11200,
-  },
-  {
-    name: "Bàn phím cơ Leopold FC750R",
-    slug: "ban-phim-co-leopold-fc750r",
-    image: "keyboard-4.jpg",
-    price: 3290000,
-    rating: 4.2,
-    sold: 5400,
-  },
-  {
-    name: "Chuột Corsair Sabre RGB Pro",
-    slug: "chuot-corsair-sabre-rgb-pro",
-    image: "mouse-4.jpg",
-    price: 1990000,
-    salePrice: 1690000,
-    rating: 4.1,
-    sold: 8900,
-  },
+   
 ];

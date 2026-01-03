@@ -1,7 +1,9 @@
 import logo from "/assets/images/logo-light.png";
 import { motion, number } from "framer-motion";
 import { Link } from "react-router";
-import { useSearchParams } from "react-router";
+import { useState } from "react";
+import Pagination from "@mui/material/Pagination";
+
 
 //COMPONENTS
 import { Search } from "~/components/UI/Search";
@@ -12,11 +14,10 @@ import { ProductByCategogy, SliderProductByCategogy } from "~/components/UI/Prod
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
 import { SortDropdown } from "~/components/UI/SortDropdown/SortDropdown";
 import { ProductCard } from "~/components/UI/ProductCard/productCard";
-import { Pagination } from "~/components/UI/Pagination/Pagination";
+import CustomPagination from "~/components/common/CustomPagination";
 
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";
-import { paginateProducts } from "~/utils/pagination";
 
 //DATA
 import { dataButton } from "./product.data";
@@ -28,16 +29,14 @@ import { ContactGroup } from "~/components/UI/ButtonContact";
 export default function ProductPage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
 
-  const [searchParams] = useSearchParams();
-  const currentPage = Number(searchParams.get("page") || 1);
-  const PAGE_SIZE = 12;
-  const totalProducts = PRODUCTS_DATA.length;
+  //PAGINATION
+  const itemsPerPage = 12;
+  const [page, setPage] = useState<number>(1);
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const products = PRODUCTS_DATA.slice(startIndex, endIndex);
 
-  const paginatedProducts = paginateProducts(
-    PRODUCTS_DATA,
-    currentPage,
-    PAGE_SIZE
-  );
+
   return (
     <div className="bg-white">
       <div className="h-full bg-primary-100 rounded-b-2xl">
@@ -116,9 +115,9 @@ export default function ProductPage() {
           </div>
 
           <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 mt-5">
-            {paginatedProducts.map(p => (
+            {products.map((p, index) => (
               <ProductCard
-                key={p.slug}
+                key={index + 1}
                 name={p.name}
                 image={p.image}
                 price={p.price}
@@ -128,13 +127,15 @@ export default function ProductPage() {
                 slug={p.slug}
               />
             ))}
-            <Pagination
-              currentPage={currentPage}
-              totalProducts={totalProducts}
-              pageSize={PAGE_SIZE}
-              basePath="/san-pham"
+          </div>
+          <div className="flex justify-center mt-6">
+            <CustomPagination
+              total={Math.ceil(PRODUCTS_DATA.length / itemsPerPage)}
+              page={page}
+              onChange={(_, value) => setPage(value)}
             />
           </div>
+
         </div>
       </div>
 
