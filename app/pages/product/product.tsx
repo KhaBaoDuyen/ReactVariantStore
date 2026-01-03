@@ -8,7 +8,8 @@ import { ImagesForcus } from "~/components/UI/ImagesForcus/ImagesForcus";
 import { CategoryBannerSlide } from "~/components/UI/ImagesBannerSlider/ImagesBannerSlider";
 import { ProductByCategogy, SliderProductByCategogy } from "~/components/UI/ProductByCategogy/ProductByCategogy";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
-import {SortDropdown} from "~/components/UI/SortDropdown/SortDropdown";
+import { SortDropdown } from "~/components/UI/SortDropdown/SortDropdown";
+import { ProductCard } from "~/components/UI/ProductCard/productCard";
 
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";
@@ -17,6 +18,7 @@ import { useMediaQuery } from "~/hooks/useMediaQuery";
 import { dataButton } from "./product.data";
 import { BRAND_DATA } from "~/data/brands.data";
 import { CATEGOGY_DATA } from "~/data/categories.data";
+import { PRODUCTS_DATA } from "~/data/products.data";
 
 export default function ProductPage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
@@ -56,7 +58,7 @@ export default function ProductPage() {
           {isMobile ? <CategoryBannerSlide /> : <ImagesForcus />}
         </div>
 
-        <div className=" mx-auto w-11/12 lg:w-10/12">
+        <div className=" mx-auto w-11/12 py-6 lg:w-10/12">
           <SwipeCategoriesSlide
             data={CATEGOGY_DATA}
             type="image"
@@ -65,14 +67,45 @@ export default function ProductPage() {
       </div>
 
       <div className=" mx-auto w-11/12 py-4 lg:w-10/12 grid grid-cols-4 h-full bg-white">
-        <div className="col-spans-1">
-             
+        <div className="col-spans-1 border-2 rounded-xl p-5 shadow-xl">
+          <h1 className="text-2xl font-bold ">Danh Mục Sản Phẩm</h1>
+          <hr className="h-[2px] border-none bg-gradient-to-r from-[#1E2746] to-transparent blur-[0.2px] my-3" />
+          {CATEGOGY_DATA.map((item, i) => {
+            const isLast = i === CATEGOGY_DATA.length - 1;
+            return (
+              <>
+                <Link to={item.slug}>
+                  <p className="py-2 font-bold text-lg text-accent-600-hover">{item.title}</p>
+                  {!isLast && (
+                    <hr className="h-[1.4px] border-none bg-gradient-to-r from-[#1e274642] to-transparent blur-[0.2px]" />
+                  )}
+                </Link>
+              </>
+            )
+
+          })}
         </div>
 
-        <div className="col-span-3">
+        <div className="col-span-3 p-5">
           <div className="flex justify-between items-center">
             <h1 className="text-xl font-bold">Tất cả</h1>
-            <SortDropdown onClick={"lọc"}/>
+            <SortDropdown onClick={"lọc"} />
+          </div>
+
+          <div className="grid grid-cols-4 gap-5 mt-5">
+            {PRODUCTS_DATA.map(p => (
+              <ProductCard
+                key={p.slug}
+                name={p.name}
+                image={p.image}
+                price= {p.price}
+                salePrice={p.salePrice}
+                rating = {p.rating}
+                sold ={p.sold}
+                slug = {p.slug}
+              />
+            ))}
+
           </div>
         </div>
       </div>

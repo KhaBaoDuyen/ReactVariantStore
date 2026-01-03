@@ -2,8 +2,8 @@ import type { ProductFeaturedItem } from "./ProductFeaturedCard.type";
 import { Link } from "react-router";
 
 //UTILS
-import { formatVND } from "~/utils/formatCurrency";
-import { formatCompact } from "~/utils/formatNumber";
+import { formatVND } from "~/utils/formatVND";
+import { formatCompact } from "~/utils/formatCompact";
 
 export const ProductFeaturedCard = ({
     name,

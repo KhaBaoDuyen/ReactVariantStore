@@ -31,12 +31,12 @@ export const SortDropdown = ({ onChange }) => {
             </button>
 
             {open && (
-                <ul className="absolute top-full left-0 mt-2 z-40 w-full bg-white shadow rounded">
+                <ul className="absolute top-full left-0 mt-2 z-40 w-max whitespace-nowrap bg-white shadow rounded">
                     {SORT_OPTION.map(item => (
                         <li
                             key={item.value}
                             onClick={() => handleSelect(item)}
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            className="px-4 py-2 w-full hover:bg-gray-100 cursor-pointer"
                         >
                             {item.label}
                         </li>
