@@ -1,6 +1,4 @@
-import type { BlogCardItem } from "~/components/UI/BlogCard/BlogCard.type";
-
-export const BLOG_DATA: BlogCardItem[] = [
+export const BLOG_DATA  = [
   {
     id: 1,
     title: "Voiceflow Pro – Giải pháp Chatbot & Voicebot",
@@ -48,6 +46,62 @@ export const BLOG_DATA: BlogCardItem[] = [
   },
   {
     id: 6,
+    title: "Tai nghe không dây: Bluetooth 5.3 có gì khác biệt?",
+    slug: "/blog/tai-nghe-bluetooth-53",
+    image: "/assets/images/banner-6.jpg",
+    descripton: "Tìm hiểu chuẩn Bluetooth 5.3 và lợi ích thực tế trên tai nghe không dây.",
+    nameTab: "Thiết bị âm thanh",
+    createdAt: "2024-12-08",
+  },
+
+  // Lặp nội dung nhưng ID PHẢI KHÁC
+  {
+    id: 7,
+    title: "Voiceflow Pro – Giải pháp Chatbot & Voicebot",
+    slug: "/blog/voiceflow-pro",
+    image: "/assets/images/banner-2.jpg",
+    descripton: "Giải pháp chatbot & voicebot chuyên nghiệp cho doanh nghiệp",
+    nameTab: "Chia sẻ kinh nghiệm",
+    createdAt: "2024-12-20",
+  },
+  {
+    id: 8,
+    title: "AI đang thay đổi Ecommerce như thế nào? AI đang thay đổi Ecommerce như thế nào?",
+    slug: "/blog/ai-ecommerce",
+    image: "/assets/images/banner-3.jpg",
+    descripton: "Ứng dụng AI trong thương mại điện tử hiện đại, Ứng dụng AI trong thương mại điện tử hiện đại",
+    nameTab: "Xu hướng AI",
+    createdAt: "2024-12-18",
+  },
+  {
+    id: 9,
+    title: "Cách chọn bàn phím cơ phù hợp cho dân văn phòng & game thủ",
+    slug: "/blog/chon-ban-phim-co",
+    image: "/assets/images/banner-4.jpg",
+    descripton: "So sánh switch, layout và chất liệu để chọn bàn phím cơ phù hợp nhu cầu sử dụng.",
+    nameTab: "Thiết bị ngoại vi",
+    createdAt: "2024-12-15",
+  },
+  {
+    id: 10,
+    title: "Chuột gaming: DPI, polling rate và những thông số cần biết",
+    slug: "/blog/chuot-gaming-dpi",
+    image: "/assets/images/banner-5.jpg",
+    descripton: "Giải thích chi tiết DPI, polling rate và cách chọn chuột gaming chính xác.",
+    nameTab: "Thiết bị ngoại vi",
+    createdAt: "2024-12-13",
+  },
+  {
+    id: 11,
+    title: "Màn hình máy tính: Nên chọn IPS, VA hay TN?",
+    slug: "/blog/chon-man-hinh-may-tinh",
+    image: "/assets/images/banner-1.jpg",
+    descripton: "Phân tích ưu nhược điểm các tấm nền IPS, VA, TN khi mua màn hình.",
+    nameTab: "Thiết bị hiển thị",
+    createdAt: "2024-12-10",
+  },
+  {
+    id: 12,
     title: "Tai nghe không dây: Bluetooth 5.3 có gì khác biệt?",
     slug: "/blog/tai-nghe-bluetooth-53",
     image: "/assets/images/banner-6.jpg",

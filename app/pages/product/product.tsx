@@ -2,8 +2,7 @@ import logo from "/assets/images/logo-light.png";
 import { motion, number } from "framer-motion";
 import { Link } from "react-router";
 import { useState } from "react";
-import Pagination from "@mui/material/Pagination";
-
+ 
 
 //COMPONENTS
 import { Search } from "~/components/UI/Search";
