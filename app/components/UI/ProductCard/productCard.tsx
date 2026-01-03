@@ -14,10 +14,23 @@ export const ProductCard = ({
     rating = 0,
     sold = 5
 }: productProp) => {
+    const hasSale = salePrice && salePrice < price;
+
+    const discountPercent = hasSale
+        ? Math.round(((price - salePrice!) / price) * 100)
+        : 0;
+
     return (
         <>
-            <Link to={slug} className=" shadow-md border-1 border-gray-100 rounded-md group hover:shadow-2xl overflow-hidden">
-                <div className="w-full lg:h-[12rem] h-[10rem] overflow-hidden rounded-2xl">
+            <Link to={slug} className="relative shadow-md border-1 h-fit border-gray-100 rounded-md group hover:shadow-2xl overflow-hidden">
+           {salePrice && (
+                    <div className="absolute right-0 m-1 px-3 w-fit text-sm text-white p-1 bg-danger rounded-md">
+                        <p className="">{discountPercent}%</p>
+                    </div>
+           )}
+         
+
+                <div className="w-full lg:h-[12rem] h-[9rem] overflow-hidden rounded-2xl">
                     <img src={`/assets/images/products/${image}`} alt={`Ảnh sản phẩm ${image}`}
                         className="w-full group-hover:scale-125 transition-transform duration-500
                         ease-out" />
@@ -40,7 +53,7 @@ export const ProductCard = ({
                             </p>
                         )}
                     </span>
-                    <span className="flex justify-between items-center">
+                    <span className="lg:flex px-1 justify-between items-center">
                         <StarRating value={rating} />
                         <div className="flex gap-1 lg:text-[12px] text-[10px]">
                             <p className="text-muted uppercase"> ĐÃ BÁN</p>
