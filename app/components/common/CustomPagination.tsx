@@ -49,10 +49,6 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
                     borderRadius: '12px',
                 },
 
-                '& .MuiPaginationItem-previousNext:hover': {
-                    backgroundColor: 'transparent',
-                },
-
             }}
         />
     );
