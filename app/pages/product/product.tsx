@@ -1,6 +1,8 @@
 import logo from "/assets/images/logo-light.png";
-import { motion } from "framer-motion";
+import { motion, number } from "framer-motion";
 import { Link } from "react-router";
+import { useSearchParams } from "react-router";
+
 //COMPONENTS
 import { Search } from "~/components/UI/Search";
 import { ButtonAnimation } from "~/components/UI/ButtonAnimation/buttonAnimation";
@@ -10,9 +12,11 @@ import { ProductByCategogy, SliderProductByCategogy } from "~/components/UI/Prod
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
 import { SortDropdown } from "~/components/UI/SortDropdown/SortDropdown";
 import { ProductCard } from "~/components/UI/ProductCard/productCard";
+import { Pagination } from "~/components/UI/Pagination/Pagination";
 
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";
+import { paginateProducts } from "~/utils/pagination";
 
 //DATA
 import { dataButton } from "./product.data";
@@ -24,6 +28,16 @@ import { ContactGroup } from "~/components/UI/ButtonContact";
 export default function ProductPage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
 
+  const [searchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get("page") || 1);
+  const PAGE_SIZE = 12;
+  const totalProducts = PRODUCTS_DATA.length;
+
+  const paginatedProducts = paginateProducts(
+    PRODUCTS_DATA,
+    currentPage,
+    PAGE_SIZE
+  );
   return (
     <div className="bg-white">
       <div className="h-full bg-primary-100 rounded-b-2xl">
@@ -91,7 +105,7 @@ export default function ProductPage() {
           <div className=" border-2 rounded-xl p-5 shadow-xl h-fit">
             <h1 className="text-2xl font-bold ">Liên hệ chúng tôi</h1>
             <hr className="h-[2px] border-none bg-gradient-to-r from-[#1E2746] to-transparent blur-[0.2px] my-3" />
-             <ContactGroup />
+            <ContactGroup />
           </div>
         </aside>
 
@@ -102,7 +116,7 @@ export default function ProductPage() {
           </div>
 
           <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 mt-5">
-            {PRODUCTS_DATA.map(p => (
+            {paginatedProducts.map(p => (
               <ProductCard
                 key={p.slug}
                 name={p.name}
@@ -114,7 +128,12 @@ export default function ProductPage() {
                 slug={p.slug}
               />
             ))}
-
+            <Pagination
+              currentPage={currentPage}
+              totalProducts={totalProducts}
+              pageSize={PAGE_SIZE}
+              basePath="/san-pham"
+            />
           </div>
         </div>
       </div>
