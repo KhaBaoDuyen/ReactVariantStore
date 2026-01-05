@@ -27,11 +27,11 @@ export const SortDropdown = ({ onChange }) => {
                 onClick={toggleDropdown}
                 className="relative z-50 flex gap-2 bg-primary-100 px-2 py-2 border rounded-xl"
             >
-                {selected.label} <ChevronDown/>
+                {selected.label} <ChevronDown />
             </button>
 
             {open && (
-                <ul className="absolute top-full left-0 mt-2 z-40 w-max whitespace-nowrap bg-white shadow rounded">
+                <ul className="absolute  overflow-hidden top-full left-0 mt-2 z-40 w-max whitespace-nowrap bg-white shadow rounded">
                     {SORT_OPTION.map(item => (
                         <li
                             key={item.value}

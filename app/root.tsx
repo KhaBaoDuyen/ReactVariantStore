@@ -58,7 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-primary-100">
+    <div className="flex min-h-screen flex-col bg-primary-50">
       <Header />
 
       <main className="relative flex-1 overflow-hidden">

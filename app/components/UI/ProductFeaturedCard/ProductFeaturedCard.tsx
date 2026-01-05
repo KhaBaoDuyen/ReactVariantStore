@@ -22,7 +22,7 @@ export const ProductFeaturedCard = ({
                 <div className="w-1/3">
                     <div className="overflow-hidden rounded-lg">
                         <img
-                            src={image}
+                            src={`/assets/images/products/${image}`}
                             alt={`Sản phẩm nổi bật ${name}`}
                             className="
                                 w-full h-[10rem] object-cover

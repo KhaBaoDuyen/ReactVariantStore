@@ -41,7 +41,7 @@ export default function HomePage() {
   });
 
   return (
-    <>
+    <div className="bg-primary-100">
       <div className="bg-primary-700 py-10">
         <span className="lg:w-10/12 flex  mx-auto ">
           <motion.div
@@ -254,6 +254,6 @@ export default function HomePage() {
 
 
       <FeatureSection />
-    </>
+    </div>
   );
 }

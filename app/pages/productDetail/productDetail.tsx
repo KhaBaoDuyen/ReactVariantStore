@@ -1,11 +1,16 @@
 import { Link } from "react-router";
 import { useParams } from "react-router";
 
+//UTILS
+import { formatVND } from "~/utils/formatVND";
+
+//DATA
 import { PRODUCTS_DATA } from "~/data/products.data";
+
 
 export default function ProductDetailPage() {
     const { slug } = useParams();
-    const productDetail = PRODUCTS_DATA[0];
+    const productDetail = PRODUCTS_DATA[1];
 
     return (
         <div className="lg:w-10/12 w-11/12 mx-auto py-5">
@@ -21,8 +26,38 @@ export default function ProductDetailPage() {
                             <img src={`/assets/images/products/${productDetail.image}`} alt="" className="w-full h-full" />
                         </div>
                         <div className="group-text col-span-4 ">
-                             <h1 className="line-clamp-2 text-3xl font-bold">{productDetail.name}</h1>
-                             <p className=""></p>
+                            <span className="block border-b-2 border-gray-300 pb-4">
+                                <h1 className="line-clamp-2 text-3xl ">{productDetail.name}</h1>
+                                <p className="bg-surface-300 rounded-md px-2 w-fit">Danh muc</p>
+                                <div className="flex items-center lg:text-xl gap-10">
+                                    {productDetail.salePrice ? (
+                                        <>
+                                            <span className="text-primary-600 text-2xl font-bold">
+                                                {formatVND(productDetail.salePrice)}
+                                            </span>
+
+                                            <span className="text-muted line-through">
+                                                {formatVND(productDetail.price)}
+                                            </span>
+
+                                            <span className="bg-danger text-white text-sm px-2 py-1 rounded">
+                                                -{Math.round(
+                                                    ((productDetail.price - productDetail.salePrice) /
+                                                        productDetail.price) *
+                                                    100
+                                                )}%
+                                            </span>
+                                        </>
+                                    ) : (
+                                        <span className="text-primary-600 text-2xl font-bold">
+                                            {formatVND(productDetail.price)}
+                                        </span>
+                                    )}
+                                </div>  
+                                
+                            </span>
+                           
+
                         </div>
                     </div>
                     <div className="grid grid-cols-3"></div>

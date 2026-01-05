@@ -1,5 +1,6 @@
 @import "../abstracts/colors";
 
+ 
 .bg-banner {
     background: url(/assets/images/banner.png) no-repeat;
     background-size: cover;
@@ -94,6 +95,10 @@
 
 .bg-surface-100 {
     background-color: $surface-100;
+}
+
+.bg-surface-300 {
+    background-color: $surface-300;
 }
 
 .bg-accent-600 {

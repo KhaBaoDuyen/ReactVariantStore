@@ -39,10 +39,7 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({
                     color: '#fff',
                 },
 
-                '& .Mui-selected:hover': {
-                    backgroundColor: '#df5f0a',
-                },
-
+            
                 /* arrow (prev / next) */
                 '& .MuiPaginationItem-previousNext': {
                     backgroundColor: 'transparent',

@@ -37,7 +37,7 @@ export default function ProductPage() {
 
 
   return (
-    <div className="bg-white">
+    <div className="">
       <div className="h-full bg-primary-100 rounded-b-2xl">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -79,9 +79,9 @@ export default function ProductPage() {
         </div>
       </div>
 
-      <div className="relative mx-auto w-12/12 py-5 lg:w-10/12 grid lg:grid-cols-4 h-full bg-white">
-        <aside className="col-span-1 flex flex-col gap-5 hidden lg:block">
-          <div className="sticky top-40 border-2 rounded-xl p-5 shadow-xl h-fit">
+      <div className="relative mx-auto w-12/12 py-5 lg:w-10/12 grid lg:grid-cols-4 h-full  ">
+        <aside className="col-span-1 hidden lg:block">
+          <div className="sticky top-40 border-2 bg-white rounded-xl p-5 shadow-xl h-fit">
             <h1 className="text-2xl font-bold ">Danh Mục Sản Phẩm</h1>
             <hr className="h-[2px] border-none bg-gradient-to-r from-[#1E2746] to-transparent blur-[0.2px] my-3" />
             {CATEGOGY_DATA.map((item, i) => {
@@ -100,7 +100,7 @@ export default function ProductPage() {
             })}
           </div>
 
-          <div className=" border-2 rounded-xl p-5 shadow-xl h-fit">
+          <div className="bg-white border-2 rounded-xl mt-5 p-5 shadow-xl h-fit">
             <h1 className="text-2xl font-bold ">Liên hệ chúng tôi</h1>
             <hr className="h-[2px] border-none bg-gradient-to-r from-[#1E2746] to-transparent blur-[0.2px] my-3" />
             <ContactGroup />

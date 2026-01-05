@@ -22,13 +22,13 @@ export const ProductCard = ({
 
     return (
         <>
-            <Link to={slug} className="relative shadow-md border-1 h-fit border-gray-100 rounded-md group hover:shadow-2xl overflow-hidden">
-           {salePrice && (
+            <Link to={slug} className="relative bg-white shadow-md border-1 h-fit border-gray-100 rounded-xl group hover:shadow-2xl overflow-hidden">
+                {salePrice && (
                     <div className="absolute right-0 m-1 px-3 w-fit text-sm text-white p-1 bg-danger rounded-md">
                         <p className="">{discountPercent}%</p>
                     </div>
-           )}
-         
+                )}
+
 
                 <div className="w-full lg:h-[12rem] h-[9rem] overflow-hidden rounded-2xl">
                     <img src={`/assets/images/products/${image}`} alt={`Ảnh sản phẩm ${image}`}
