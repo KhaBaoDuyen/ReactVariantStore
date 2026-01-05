@@ -14,6 +14,7 @@ import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/Swipe
 import { SortDropdown } from "~/components/UI/SortDropdown/SortDropdown";
 import { ProductCard } from "~/components/UI/ProductCard/productCard";
 import CustomPagination from "~/components/common/CustomPagination";
+import { ContactGroup } from "~/components/UI/ButtonContact";
 
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";
@@ -23,7 +24,6 @@ import { dataButton } from "./product.data";
 import { BRAND_DATA } from "~/data/brands.data";
 import { CATEGOGY_DATA } from "~/data/categories.data";
 import { PRODUCTS_DATA } from "~/data/products.data";
-import { ContactGroup } from "~/components/UI/ButtonContact";
 
 export default function ProductPage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");

@@ -22,7 +22,7 @@ export const ProductCard = ({
 
     return (
         <>
-            <Link to={slug} className="relative bg-white shadow-md border-1 h-fit border-gray-100 rounded-xl group hover:shadow-2xl overflow-hidden">
+            <Link to={slug} className="relative flex-shrink-0 w-[210px] bg-white shadow-md border-1 h-fit border-gray-100 rounded-xl group hover:shadow-2xl overflow-hidden">
                 {salePrice && (
                     <div className="absolute right-0 m-1 px-3 w-fit text-sm text-white p-1 bg-danger rounded-md">
                         <p className="">{discountPercent}%</p>

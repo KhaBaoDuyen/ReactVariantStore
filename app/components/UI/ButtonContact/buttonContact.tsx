@@ -8,7 +8,7 @@ export const ButtonContact = ({
   icon: Icon,
 }: ButtonContactProps) => {
   return (
-    <a href={href} className="flex relative items-center gap-4" aria-label={title}>
+    <a href={href} className="flex relative items-center gap-4 w-fit" aria-label={title}>
       <div className="absolute">
         <span className="pulse-ring absolute inset-0 rounded-full"></span>
 
@@ -17,7 +17,7 @@ export const ButtonContact = ({
         </div>
       </div>
 
-      <div className="ml-10">
+      <div className="ml-10 w-fit">
         <p className="text-white bg-primary-600 text-center px-10 w-fit rounded-tr-md">
           {title}
         </p>
