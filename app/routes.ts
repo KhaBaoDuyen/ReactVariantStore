@@ -6,4 +6,5 @@ export default [
   route("/san-pham/:slug", "routes/productDetail.tsx"),
   route("/bai-viet", "routes/blog.tsx"),
   route("/bai-viet/:slug", "routes/blogDetail.tsx"),
+  route("/he-thong-cua-hang", "routes/storeMap.tsx"),
 ] satisfies RouteConfig;

@@ -12,7 +12,7 @@ export default function BlogDetailPage() {
             <article className="col-span-9">
                 <span className="flex hidden lg:block justify-start font-bold items-center gap-2 mb-2">
                     <Link to={"/"} className="text-accent-500 text-accent-600-hover">Trang chủ /</Link>
-                    <Link to={"/san-pham"} className="text-accent-500 text-accent-600-hover">Sản phẩm /</Link>
+                    <Link to={"/bai-viet"} className="text-accent-500 text-accent-600-hover">Bài viết /</Link>
                     <Link to={`/san-pham/${slugParam}`} className="text-muted text-accent-600-hover">{blogDetail.title}</Link>
                 </span>
 
