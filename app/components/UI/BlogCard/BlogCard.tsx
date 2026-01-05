@@ -13,7 +13,7 @@ export const BlogCard = ({
 }: BlogCardItem) => {
     return (
         <>
-            <Link to={slug} key={id} className="">
+            <Link to={`/bai-viet/${slug}`} key={id} className="">
                 <div className="bg-white rounded-xl transform transition-all duration-300 ease-in-out  
             group shadow hover:shadow-md">
                     <div className="overflow-hidden rounded-xl max-h-[19rem] min-h-[19rem]">
