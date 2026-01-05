@@ -1,13 +1,13 @@
 import type { Route } from "./+types/product";
-import BlogPage from "~/pages/blog/blog";
+import BlogDetailPage from "~/pages/blogDetail/blogDetail";
 
 export function meta( {}: Route.MetaArgs){
     return[
-        { title: "Bài viết" },
+        { title: "Bài viết " },
         { name: "description", content: "Khám phá các tin tức công nghệ tại Yejara!" },
     ];
 }
 
-export default function Blogs() {
-    return <BlogPage />;
+export default function BlogDetail() {
+    return <BlogDetailPage />;
 }
