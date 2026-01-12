@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 // css
+import "mapbox-gl/dist/mapbox-gl.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
