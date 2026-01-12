@@ -93,19 +93,19 @@ export const Header = () => {
 
                     <div className="flex items-center gap-4">
                         <LanguageSelect />
-                        <button className="relative hidden sm:flex items-center gap-1 hover:text-red-400">
+                        <Link to={"/gio-hang-cua-toi"} className="relative hidden sm:flex items-center gap-1 hover:text-red-600">
                             <ShoppingCart size={20} />
-                            <span className="hidden lg:inline">Giỏ hàng</span>
+                            <span className="hidden lg:inline"  >Giỏ hàng</span>
                             {cartCount > 0 && (
-                                <span className="absolute -top-2 -right-3 h-5 w-5 rounded-full bg-red-600 text-xs flex items-center justify-center">
+                                <span className="absolute -top-2 -right-3 h-5 w-5 rounded-full bg-red-600 text-white text-xs flex items-center justify-center">
                                     {cartCount}
                                 </span>
                             )}
-                        </button>
-                        <button className="hidden lg:flex items-center gap-1 hover:text-red-400">
+                        </Link>
+                        <Link to={"/dang-nhap"} className="hidden lg:flex items-center gap-1 hover:text-red-600">
                             <User size={20} />
                             <span>Đăng nhập</span>
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
