@@ -1,4 +1,4 @@
-import ProductDetailPage from "~/pages/productDetail/productDetail";
+import ProductDetailPage from "~/pages/main/products/productDetail/productDetail";
 import { Route } from "../+types/root";
 
 export function meta ( {}: Route.MetaArgs){
