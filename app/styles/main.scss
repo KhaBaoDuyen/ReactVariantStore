@@ -1,6 +1,6 @@
-@import "./utilities/backround";
-@import "./utilities/text";
-@import "./utilities/border";
-@import "./utilities/text.title.color";
-@import "./components/swiper-custom.scss";
-@import "./components/scroll-custom.scss";
+@use "./utilities/backround";
+@use "./utilities/text";
+@use "./utilities/border";
+@use "./utilities/textTitle.color";
+@use "./components/swiper-custom.scss";
+@use "./components/scroll-custom.scss";
