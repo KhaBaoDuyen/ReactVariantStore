@@ -26,7 +26,7 @@ export const Header = () => {
 
     return (
         <>
-            <div className="bg-accent-600 hidden lg:block">
+            <div className="bg-accent-600-hover hidden lg:block">
                 <ul className="flex items-center justify-between gap-6 px-6 py-3">
                     <li className="flex items-center text-sm text-white">
                         <span className="flex items-center justify-center w-5 h-5 rounded-full border border-white mr-2">

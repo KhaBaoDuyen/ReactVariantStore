@@ -21,7 +21,7 @@ export const ButtonContact = ({
         <p className="text-white bg-primary-600 text-center px-10 w-fit rounded-tr-md">
           {title}
         </p>
-        <p className="text-primary-500 bg-accent-600 rounded-md w-fit p-1 px-10 font-bold">
+        <p className="text-primary-500 bg-accent-600-hover rounded-md w-fit p-1 px-10 font-bold">
           {description}
         </p>
       </div>

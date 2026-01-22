@@ -83,7 +83,7 @@ export default function ContactPage(): JSX.Element {
                 ></textarea>
               </div>
 
-              <button className="w-full bg-accent-600  text-white font-bold py-2 rounded-full flex items-center justify-between px-2 transition-all group overflow-hidden">
+              <button className="w-full bg-accent-600-hover  text-white font-bold py-2 rounded-full flex items-center justify-between px-2 transition-all group overflow-hidden">
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-accent-600 group-hover:translate-x-1 transition-transform">
                   <ArrowRight size={20} />
                 </div>
