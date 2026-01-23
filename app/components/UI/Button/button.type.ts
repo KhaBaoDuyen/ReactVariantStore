@@ -6,6 +6,7 @@ export type ButtonProps = {
   iconPosition?: "left" | "right";
   variant?: "solid" | "outline";
   color?: string;
+  colorText?: string;
   className?: string;
   onClick?: () => void;
 };

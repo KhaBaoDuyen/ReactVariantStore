@@ -1,11 +1,13 @@
 interface SearchProps {
     width?: string;
     showOnMobile?: boolean;
+    type?:string;
 }
 
 export const Search = ({
     width = "lg:w-5/12",
     showOnMobile = false,
+    type = "solid",
 }: SearchProps) => {
     return (
         <div
@@ -13,6 +15,8 @@ export const Search = ({
         ${showOnMobile ? "flex" : "hidden"}
         lg:flex
         ${width}
+        ${type === "solid" ? "bg-white" : ""}
+        ${type === "outline" ? "border-2 border-accent-600" : ""}
         items-center
         bg-white/20
         rounded-md
@@ -39,13 +43,14 @@ export const Search = ({
 
             <input
                 type="text"
-                className="p-2 w-full bg-transparent placeholder:text-gray-300 outline-none border-none text-white"
+                className="p-2 w-full bg-transparent placeholder:text-gray-300 outline-none
+                 border-none "
                 placeholder="Tìm kiếm..."
             />
 
             <button
                 className="
-                    bg-accent-600-hover
+                    bg-accent-600
                     min-w-max
                     px-4
                     py-2

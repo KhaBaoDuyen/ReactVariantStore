@@ -6,16 +6,18 @@ export const Button = ({
   iconPosition = "right",
   variant = "solid",
   color = "accent-600",
+  colorText ="",
   className = "",
   onClick,
 }: ButtonProps) => {
+
   const baseStyle =
     "px-5 py-2 w-fit rounded-md flex items-center justify-center gap-3 font-medium transition-all duration-300";
 
  const variantStyle =
     variant === "solid"
-      ? `bg-${color} text-white hover:opacity-90`
-      : `border border-${color} text-${color} bg-transparent  hover:text-white`;
+      ? `bg-${color} !text-white hover:opacity-90`
+      : `border border-${color} text-${colorText ? colorText : color} bg-transparent  hover:text-white`;
 
   return (
   <button
@@ -28,7 +30,7 @@ export const Button = ({
       </span>
     )}
 
-    <span>{children}</span>
+     {children} 
 
     {icon && iconPosition === "right" && (
       <span className="transition-transform duration-300 group-hover:translate-x-1">

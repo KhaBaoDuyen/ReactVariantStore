@@ -62,7 +62,7 @@ export default function App() {
     <div className="flex min-h-screen flex-col bg-primary-50">
       <Header />
 
-      <main className="relative flex-1 overflow-hidden">
+      <main className="relative flex-1 ">
          <div className="relative z-10">
           <Outlet />
         </div>

@@ -1,0 +1,11 @@
+@use "~/styles/utilities/colors" as *;
+.loader {
+  border-top-color: $primary-600;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
