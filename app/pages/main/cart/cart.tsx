@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import logo from "../../../../public/assets/images/logo-dark.png";
+import { ChevronDown } from "lucide-react";
 
 //COMPOENTNS
 import { Search } from "~/components/UI/Search";
-import { Button } from "~/components/UI/Button/button";
+import { Button } from "~/components/UI/ButtonIcon/buttonIcon";
 import Loading from "~/components/UI/Loading/loading";
 import QuantitySelector from "~/components/UI/QuantitySelector/QuantitySelector";
 
@@ -35,7 +36,7 @@ export default function CartPage() {
 
     const totalChecked = selectedId.length;
 
-    //QuantitySelector 
+    //QuantitySelector check
     const updateQuantity = (id: string, type: "inc" | "dec") => {
         setCart((prev) =>
             prev.map((item) =>
@@ -151,9 +152,10 @@ export default function CartPage() {
                                             </td>
                                             <td className="">
                                                 <span className="">
-                                                    <p className="font-medium text-sm  ">
-                                                        Phân loại:
-                                                    </p>
+                                                    <button className=" flex  ">
+                                                        <p className="font-medium text-sm"> Phân loại </p> 
+                                                        <ChevronDown className="text-gray-500" />
+                                                    </button>
 
                                                     <p className="text-xs text-gray-500">
                                                         {c.selectedVariant.variantName}

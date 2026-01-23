@@ -6,7 +6,7 @@ import Slider from "react-slick";
 
 //COMPONENTS
 import TextType from '~/components/UI/TextType/textType';
-import { Button } from "~/components/UI/Button/button";
+import { Button } from "~/components/UI/ButtonIcon/buttonIcon";
 import { ImagesZoom } from "~/components/UI/ImagesZoom";
 import SwipeToSlide from "~/components/UI/SwipeToSlide/SwipeToSlide";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";

@@ -4,7 +4,7 @@ import map from "/assets/images/Icon/map.png";
 import phone from "/assets/images/Icon/phone.png";
 import email from "/assets/images/Icon/email.png";
 import { LINK_DATA } from "./footer.data";
-import { Button } from "~/components/UI/Button/button";
+import { Button } from "~/components/UI/ButtonIcon/buttonIcon";
 
 export const Footer = () => {
     return (
