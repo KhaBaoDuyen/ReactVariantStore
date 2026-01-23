@@ -5,6 +5,7 @@ import logo from "../../../../public/assets/images/logo-dark.png";
 import { Search } from "~/components/UI/Search";
 import { Button } from "~/components/UI/Button/button";
 import Loading from "~/components/UI/Loading/loading";
+import QuantitySelector from "~/components/UI/QuantitySelector/QuantitySelector";
 
 // SERVICE 
 import { getCart } from "~/service/cart.service";
@@ -147,11 +148,11 @@ export default function CartPage() {
                                                 {c.selectedVariant.price.toLocaleString()}đ
                                             </td>
                                             <td className="p-4 text-center">
-                                                <div className="flex items-center border w-fit rounded">
-                                                    <button className="px-2">-</button>
-                                                    <span className="px-3">{c.quantity}</span>
-                                                    <button className="px-2">+</button>
-                                                </div>
+                                                <QuantitySelector
+                                                    value={c.quantity}
+                                                    onIncrease={() => { }}
+                                                    onDecrease={() => { }}
+                                                />
                                             </td>
                                             <td className="p-4 text-center text-red-500 font-semibold">
                                                 {(c.selectedVariant.price * c.quantity).toLocaleString()}đ

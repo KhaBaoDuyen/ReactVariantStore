@@ -98,3 +98,17 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 ---
 
 Built with ❤️ using React Router.
+
+feat → thêm chức năng mới
+
+fix → sửa lỗi
+
+refactor → chỉnh code không đổi chức năng
+
+style → chỉ đổi giao diện / format
+
+docs → tài liệu
+
+test → test
+
+chore → việc lặt vặt (config, build…)
