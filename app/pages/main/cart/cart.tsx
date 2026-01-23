@@ -35,6 +35,23 @@ export default function CartPage() {
 
     const totalChecked = selectedId.length;
 
+    //QuantitySelector 
+    const updateQuantity = (id: string, type: "inc" | "dec") => {
+        setCart((prev) =>
+            prev.map((item) =>
+                item.cartItemId === id
+                    ? {
+                        ...item,
+                        quantity:
+                            type === "inc"
+                                ? item.quantity + 1
+                                : Math.max(1, item.quantity - 1),
+                    }
+                    : item
+            )
+        );
+    };
+
 
 
 
@@ -150,8 +167,8 @@ export default function CartPage() {
                                             <td className="p-4 text-center">
                                                 <QuantitySelector
                                                     value={c.quantity}
-                                                    onIncrease={() => { }}
-                                                    onDecrease={() => { }}
+                                                    onIncrease={() => updateQuantity(c.cartItemId, "inc")}
+                                                    onDecrease={() => updateQuantity(c.cartItemId, "dec")}
                                                 />
                                             </td>
                                             <td className="p-4 text-center text-red-500 font-semibold">
