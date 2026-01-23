@@ -24,6 +24,18 @@ export default function CartPage() {
         );
     };
 
+    const checkAll = () => {
+        if (selectedId.length === cart.length) {
+            setSelectedId([]);
+        } else {
+            setSelectedId(cart.map((item) => item.cartItemId));
+        }
+    };
+
+    const totalChecked = selectedId.length;
+
+
+
 
 
     // fech cart data
@@ -85,6 +97,8 @@ export default function CartPage() {
                                     <tr className="">
                                         <th className="p-4 text-left" colSpan={2}>
                                             <input type="checkbox"
+                                                checked={selectedId.length === cart.length && cart.length > 0}
+                                                onChange={checkAll}
                                                 className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer" />
                                             Sản phẩm
                                         </th>
@@ -102,6 +116,8 @@ export default function CartPage() {
                                                 <div className="flex items-center gap-3">
                                                     <input
                                                         type="checkbox"
+                                                        checked={selectedId.includes(c.cartItemId)}
+                                                        onChange={() => checkItem(c.cartItemId)}
                                                         className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer"
                                                     />
 
@@ -187,9 +203,6 @@ export default function CartPage() {
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             ))}
                         </div>
@@ -201,9 +214,11 @@ export default function CartPage() {
             <div className="bg-white lg:w-10/12  flex items-center justify-between mx-auto rounded shadow-[0_-4px_12px_rgba(0,0,0,0.08)] sticky bottom-0 z-10">
                 <div className="p-4 text-left flex gap-3 lg:justify-center lg:items-center">
                     <input type="checkbox"
+                        checked={selectedId.length === cart.length && cart.length > 0}
+                        onChange={checkAll}
                         className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer" />
                     <p>Tất cả </p>
-                    <p className="hidden lg:block">(1)</p>
+                    <p className="hidden lg:block">({totalChecked})</p>
                     <button className="text-sm hidden lg:block text-gray-500 hover:text-red-500">
                         Xóa
                     </button>
@@ -215,7 +230,7 @@ export default function CartPage() {
                         <h1 className="text-accent-600 font-bold lg:text-2xl text-sm">1.471.000đ</h1>
                     </span>
                     < Button className="flex">
-                        <p className="">Mua hàng</p>  <p className="block lg:hidden">(1)</p>
+                        <p className="">Mua hàng</p>  <p className="block lg:hidden">({totalChecked})</p>
                     </Button>
                 </div>
             </div>
