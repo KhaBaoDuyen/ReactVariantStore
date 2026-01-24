@@ -202,18 +202,39 @@ export const DATA_CART = {
       "productName": "Hub chuyển USB Type C",
       "image": "data:image/jpeg;base64,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",
       "selectedVariant": {
-        "variantId": "V013",
-        "variantName": "5 in 1 - HDMI - USB 3.0",
-        "oldPrice": 590000,
-        "price": 450000
+        "variantId": "V005",
+        "variantName": "Đen",
+        "oldPrice": 6990000,
+        "price": 5990000
       },
       "variants": [
         {
-          "variantId": "V013",
-          "variantName": "5 in 1 - HDMI - USB 3.0",
-          "oldPrice": 590000,
-          "price": 450000,
-          "image": "/images/hub.png"
+          variantId: "V005",
+          variantName: "Đen",
+          oldPrice: 6990000,
+          price: 5990000,
+          image: "/images/sony-den.png"
+        },
+        {
+          variantId: "V006",
+          variantName: "Bạc",
+          oldPrice: 6990000,
+          price: 6090000,
+          image: "/images/sony-bac.png"
+        },
+        {
+          variantId: "V019",
+          variantName: "Xanh đậm",
+          oldPrice: 6990000,
+          price: 6090000,
+          image: "/images/sony-xanh.png"
+        },
+        {
+          variantId: "V020",
+          variantName: "Đen ",
+          oldPrice: 5490000,
+          price: 4690000,
+          image: "/images/sony-den-nonc.png"
         }
       ],
       "quantity": 1
@@ -232,11 +253,25 @@ export const DATA_CART = {
       },
       "variants": [
         {
-          "variantId": "V014",
-          "variantName": "Xám - Gập gọn",
-          "oldPrice": 320000,
-          "price": 240000,
-          "image": "/images/gia-do.png"
+          variantId: "V007",
+          variantName: "Full HD 1080p",
+          oldPrice: 2490000,
+          price: 1990000,
+          image: "/images/webcam.png"
+        },
+        {
+          variantId: "V021",
+          variantName: "2K 1440p",
+          oldPrice: 3290000,
+          price: 2690000,
+          image: "/images/webcam-2k.png"
+        },
+        {
+          variantId: "V022",
+          variantName: "4K Ultra HD",
+          oldPrice: 4990000,
+          price: 3990000,
+          image: "/images/webcam-4k.png"
         }
       ],
       "quantity": 1

@@ -7,6 +7,7 @@ import { Search } from "~/components/UI/Search";
 import { Button } from "~/components/UI/ButtonIcon/buttonIcon";
 import Loading from "~/components/UI/Loading/loading";
 import QuantitySelector from "~/components/UI/QuantitySelector/QuantitySelector";
+import VariantSelector from "~/components/UI/Variant/VariantSelector/VariantSelector";
 
 // SERVICE 
 import { getCart } from "~/service/cart.service";
@@ -16,6 +17,7 @@ export default function CartPage() {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [selectedId, setSelectedId] = useState<string[]>([]);
+    const [variantSelectorOpen, setVariantSelectorOpen] = useState<string | null>(null);
 
     //HAM CHECK 
     const checkItem = (cartItemId: string) => {
@@ -53,6 +55,10 @@ export default function CartPage() {
         );
     };
 
+    // Props VAriantSelector
+    const totalVariantOpen = async (cartItemId: string) => {
+        setVariantSelectorOpen((prev) => (prev === cartItemId ? null : cartItemId));
+    }
 
 
 
@@ -150,10 +156,10 @@ export default function CartPage() {
                                                     </p>
                                                 </div>
                                             </td>
-                                            <td className="">
+                                            <td className="relative">
                                                 <span className="">
-                                                    <button className=" flex  ">
-                                                        <p className="font-medium text-sm"> Phân loại </p> 
+                                                    <button className=" flex" onClick={() => totalVariantOpen(c.cartItemId)}>
+                                                        <p className="font-medium text-sm"> Phân loại </p>
                                                         <ChevronDown className="text-gray-500" />
                                                     </button>
 
@@ -161,7 +167,22 @@ export default function CartPage() {
                                                         {c.selectedVariant.variantName}
                                                     </p>
                                                 </span>
-
+                                                {variantSelectorOpen === c.cartItemId && (
+                                                    <div className="absolute -bottom-10 w-full"
+                                                        onClick={() => setVariantSelectorOpen(null)}>
+                                                        <div
+                                                            onClick={(e) => e.stopPropagation()}
+                                                            className="">
+                                                            <VariantSelector
+                                                                variants={c.variants}
+                                                                selectedVariantId={c.selectedVariant.variantId}
+                                                                onSelect={(variant) => {
+                                                                    setVariantSelectorOpen(null);
+                                                                 }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </td>
                                             <td className="p-4 text-center">
                                                 {c.selectedVariant.price.toLocaleString()}đ
