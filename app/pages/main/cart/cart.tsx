@@ -168,7 +168,7 @@ export default function CartPage() {
                                                     </p>
                                                 </span>
                                                 {variantSelectorOpen === c.cartItemId && (
-                                                    <div className="absolute -bottom-10 w-full"
+                                                    <div className="absolute bg-white z-50 rounded overflow-hidden  -left-5 w-[240px]"
                                                         onClick={() => setVariantSelectorOpen(null)}>
                                                         <div
                                                             onClick={(e) => e.stopPropagation()}

@@ -7,7 +7,7 @@ export default function VariantSelector({
     onSelect,
 }: VariantButtonProps) {
     return (
-        <div className="bg-white p-2 z-50 flex flex-wrap gap-3 w-fit shadow-md border-1 border-gray-400">
+        <div className="bg-white rounded p-2 z-50 flex flex-wrap gap-3 w-full  shadow-md border-1 border-gray-400">
             <p className="text-gray-500">Phân loại:</p>
             {variants.map((v, index) => (
                 <VariantButton
