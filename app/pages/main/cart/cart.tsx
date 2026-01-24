@@ -178,7 +178,7 @@ export default function CartPage() {
                                                                 selectedVariantId={c.selectedVariant.variantId}
                                                                 onSelect={(variant) => {
                                                                     setVariantSelectorOpen(null);
-                                                                 }}
+                                                                }}
                                                             />
                                                         </div>
                                                     </div>
@@ -208,13 +208,16 @@ export default function CartPage() {
 
                             </table>
                         </div>
-
+                        {/* mobile */}
                         <div className="block md:hidden bg-gray-100 p-2 space-y-3">
                             {cart.map((c) => (
                                 <div key={c.cartItemId} className="bg-white rounded-xl p-3 shadow-sm">
 
                                     <div className="flex justify-center items-center gap-3">
-                                        <input type="checkbox" className="mt-2 w-4 h-4 accent-orange-500 cursor-pointer" />
+                                        <input type="checkbox" 
+                                        checked = { selectedId.includes(c.cartItemId) }
+                                        onChange={() => checkItem(c.cartItemId)}
+                                        className="mt-2 w-4 h-4 accent-orange-500 cursor-pointer" />
 
                                         <img
                                             src={c.image}
@@ -252,13 +255,14 @@ export default function CartPage() {
                 </>
             )}
 
-            <div className="bg-white lg:w-10/12  flex items-center justify-between mx-auto rounded shadow-[0_-4px_12px_rgba(0,0,0,0.08)] sticky bottom-0 z-10">
-                <div className="p-4 text-left flex gap-3 lg:justify-center lg:items-center">
+            <div className="bg-white lg:w-10/12  flex items-center justify-between mx-auto rounded 
+            shadow-[0_-4px_12px_rgba(0,0,0,0.08)] sticky bottom-0 z-10">
+                <div className="p-4 text-left flex lg:gap-3 lg:justify-center lg:items-center">
                     <input type="checkbox"
                         checked={selectedId.length === cart.length && cart.length > 0}
                         onChange={checkAll}
                         className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer" />
-                    <p>Tất cả </p>
+                    <p className=" whitespace-nowrap w-full ">Tất cả </p>
                     <p className="hidden lg:block">({totalChecked})</p>
                     <button className="text-sm hidden lg:block text-gray-500 hover:text-red-500">
                         Xóa
@@ -268,10 +272,10 @@ export default function CartPage() {
                 <div className="p-4 text-right flex lg:items-center gap-4">
                     <span className="flex gap-3 lg:items-center items-start">
                         <p className="text-lg font-semibold lg:block hidden">Tổng tiền:</p>
-                        <h1 className="text-accent-600 font-bold lg:text-2xl text-sm">1.471.000đ</h1>
+                        <h1 className="text-accent-600 font-bold lg:text-2xl">1.471.000đ</h1>
                     </span>
-                    < Button className="flex">
-                        <p className="">Mua hàng</p>  <p className="block lg:hidden">({totalChecked})</p>
+                    < Button className="">
+                        <p className=" whitespace-nowrap text-sm">Mua hàng</p>  <span className="block lg:hidden">({totalChecked})</span>
                     </Button>
                 </div>
             </div>
