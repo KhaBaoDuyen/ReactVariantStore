@@ -8,9 +8,10 @@ import { Button } from "~/components/UI/ButtonIcon/buttonIcon";
 import Loading from "~/components/UI/Loading/loading";
 import QuantitySelector from "~/components/UI/QuantitySelector/QuantitySelector";
 import VariantSelector from "~/components/UI/Variant/VariantSelector/VariantSelector";
+import SaleProduct from "~/components/UI/CalcSalePercent/CalcSalePercent";
 
 // UTILS
-import { caltSaleProduct } from "~/utils/caltSaleProduct";
+import { calcSalePercent } from "~/utils/caltSaleProduct";
 import { formatVND } from "~/utils/formatVND";
 // SERVICE 
 import { getCart } from "~/service/cart.service";
@@ -64,7 +65,7 @@ export default function CartPage() {
         setVariantSelectorOpen((prev) => (prev === cartItemId ? null : cartItemId));
     }
 
-    
+
     // fech cart data
     const fetchCartData = async () => {
         setLoading(true);
@@ -77,8 +78,8 @@ export default function CartPage() {
             setLoading(false);
         }
     };
-    
- 
+
+
 
     useEffect(() => {
         fetchCartData();
@@ -139,76 +140,114 @@ export default function CartPage() {
                                 </thead>
 
                                 <tbody>
-                                    {cart.map((c, index) => (
-                                        <tr key={c.cartItemId} className="border-t">
-                                            <td className="p-4">
-                                                <div className="flex items-center gap-3">
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={selectedId.includes(c.cartItemId)}
-                                                        onChange={() => checkItem(c.cartItemId)}
-                                                        className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer"
-                                                    />
+                                    {cart.map((c, index) => {
+                                        const salePrice = calcSalePercent(c.selectedVariant.price, c.selectedVariant.oldPrice);
+                                        return (
+                                            <tr key={c.cartItemId} className="border-t">
+                                                <td className="p-4">
+                                                    <div className="flex items-center gap-3">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={selectedId.includes(c.cartItemId)}
+                                                            onChange={() => checkItem(c.cartItemId)}
+                                                            className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer"
+                                                        />
 
-                                                    <img
-                                                        src={c.image}
-                                                        className="w-16 h-16 rounded object-cover"
-                                                        alt={c.productName}
-                                                    />
-                                                    <p className="font-medium text-sm  line-clamp-2">
-                                                        {c.productName}
-                                                    </p>
-                                                </div>
-                                            </td>
-                                            <td className="relative">
-                                                <span className="">
-                                                    <button className=" flex" onClick={() => totalVariantOpen(c.cartItemId)}>
-                                                        <p className="font-medium text-sm"> Phân loại </p>
-                                                        <ChevronDown className="text-gray-500" />
-                                                    </button>
-
-                                                    <p className="text-xs text-gray-500">
-                                                        {c.selectedVariant.variantName}
-                                                    </p>
-                                                </span>
-                                                {variantSelectorOpen === c.cartItemId && (
-                                                    <div className="absolute bg-white z-50 rounded overflow-hidden  -left-5 w-[240px]"
-                                                        onClick={() => setVariantSelectorOpen(null)}>
-                                                        <div
-                                                            onClick={(e) => e.stopPropagation()}
-                                                            className="">
-                                                            <VariantSelector
-                                                                variants={c.variants}
-                                                                selectedVariantId={c.selectedVariant.variantId}
-                                                                onSelect={(variant) => {
-                                                                    setVariantSelectorOpen(null);
-                                                                }}
-                                                            />
-                                                        </div>
+                                                        <img
+                                                            src={c.image}
+                                                            className="w-16 h-16 rounded object-cover"
+                                                            alt={c.productName}
+                                                        />
+                                                        <span className="">
+                                                            <p className="font-medium text-sm  line-clamp-2">
+                                                                {c.productName}
+                                                            </p>
+                                                            {c.selectedVariant.oldPrice > c.selectedVariant.price ? (
+                                                                <span className="text-xs flex text-gray-500">
+                                                                  <p>sản phẩm đang giảm</p>  
+                                                                  <SaleProduct
+                                                                        price={c.selectedVariant.oldPrice}
+                                                                        salePrice={c.selectedVariant.price}
+                                                                        bgColor={false}
+                                                                    />
+                                                                </span>
+                                                            ) : (
+                                                                <p>{formatVND(c.selectedVariant.price)}</p>
+                                                            )}
+                                                        </span>
+                                                       
                                                     </div>
-                                                )}
-                                            </td>
-                                            <td className="p-4 text-center">
-                                                {formatVND(c.selectedVariant.price)}
-                                                
-                                            </td>
-                                            <td className="p-4 text-center">
-                                                <QuantitySelector
-                                                    value={c.quantity}
-                                                    onIncrease={() => updateQuantity(c.cartItemId, "inc")}
-                                                    onDecrease={() => updateQuantity(c.cartItemId, "dec")}
-                                                />
-                                            </td>
-                                            <td className="p-4 text-center text-red-500 font-semibold">
-                                                {formatVND(c.selectedVariant.price * c.quantity)}
-                                            </td>
-                                            <td className="p-4 text-center">
-                                                <button className="text-sm text-gray-500 hover:text-red-500">
-                                                    Xóa
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                                </td>
+                                                <td className="relative">
+                                                    <span className="">
+                                                        <button className=" flex" onClick={() => totalVariantOpen(c.cartItemId)}>
+                                                            <p className="font-medium text-sm"> Phân loại </p>
+                                                            <ChevronDown className="text-gray-500" />
+                                                        </button>
+
+                                                        <p className="text-xs text-gray-500">
+                                                            {c.selectedVariant.variantName}
+                                                        </p>
+                                                    </span>
+                                                    {variantSelectorOpen === c.cartItemId && (
+                                                        <div className="absolute bg-white z-50 rounded overflow-hidden  -left-5 w-[240px]"
+                                                            onClick={() => setVariantSelectorOpen(null)}>
+                                                            <div
+                                                                onClick={(e) => e.stopPropagation()}
+                                                                className="">
+                                                                <VariantSelector
+                                                                    variants={c.variants}
+                                                                    selectedVariantId={c.selectedVariant.variantId}
+                                                                    onSelect={(variant) => {
+                                                                        setVariantSelectorOpen(null);
+                                                                    }} />
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </td>
+                                                <td className="p-4 text-center">
+                                                    {c.selectedVariant.oldPrice > c.selectedVariant.price ? (
+                                                        <>
+                                                            <p className="line-through text-gray-400 text-sm">
+                                                                {formatVND(c.selectedVariant.oldPrice)}
+                                                            </p>
+
+                                                            <p className="text-red-500 text-sm font-bold">
+                                                                <span className="text-sm"> giảm sau khi giảm</span> {formatVND(c.selectedVariant.price)}
+                                                            </p>
+                                                        </>
+                                                    ) : (
+                                                        <p>{formatVND(c.selectedVariant.price)}</p>
+                                                    )}
+                                                </td>
+
+
+                                                <td className="p-4 text-center">
+                                                    <QuantitySelector
+                                                        value={c.quantity}
+                                                        onIncrease={() => updateQuantity(c.cartItemId, "inc")}
+                                                        onDecrease={() => updateQuantity(c.cartItemId, "dec")}
+                                                    />
+                                                </td>
+                                                <td className="p-4 text-center text-red-500 font-semibold">
+                                                    {formatVND(c.selectedVariant.price * c.quantity)}
+                                                    {
+                                                        salePrice && (
+                                                            <SaleProduct
+                                                                price={c.selectedVariant.price * c.quantity}
+                                                                salePrice={c.selectedVariant.oldPrice * c.quantity} />
+                                                        )
+                                                    }
+                                                </td>
+                                                <td className="p-4 text-center">
+                                                    <button className="text-sm text-gray-500 hover:text-red-500">
+                                                        Xóa
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        )
+
+                                    })}
                                 </tbody>
 
                             </table>
