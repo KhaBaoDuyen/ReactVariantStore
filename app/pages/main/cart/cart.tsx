@@ -9,8 +9,12 @@ import Loading from "~/components/UI/Loading/loading";
 import QuantitySelector from "~/components/UI/QuantitySelector/QuantitySelector";
 import VariantSelector from "~/components/UI/Variant/VariantSelector/VariantSelector";
 
+// UTILS
+import { caltSaleProduct } from "~/utils/caltSaleProduct";
+import { formatVND } from "~/utils/formatVND";
 // SERVICE 
 import { getCart } from "~/service/cart.service";
+
 
 export default function CartPage() {
     const [cart, setCart] = useState<any[]>([]);
@@ -60,9 +64,7 @@ export default function CartPage() {
         setVariantSelectorOpen((prev) => (prev === cartItemId ? null : cartItemId));
     }
 
-
-
-
+    
     // fech cart data
     const fetchCartData = async () => {
         setLoading(true);
@@ -75,6 +77,8 @@ export default function CartPage() {
             setLoading(false);
         }
     };
+    
+ 
 
     useEffect(() => {
         fetchCartData();
@@ -185,7 +189,8 @@ export default function CartPage() {
                                                 )}
                                             </td>
                                             <td className="p-4 text-center">
-                                                {c.selectedVariant.price.toLocaleString()}đ
+                                                {formatVND(c.selectedVariant.price)}
+                                                
                                             </td>
                                             <td className="p-4 text-center">
                                                 <QuantitySelector
@@ -195,7 +200,7 @@ export default function CartPage() {
                                                 />
                                             </td>
                                             <td className="p-4 text-center text-red-500 font-semibold">
-                                                {(c.selectedVariant.price * c.quantity).toLocaleString()}đ
+                                                {formatVND(c.selectedVariant.price * c.quantity)}
                                             </td>
                                             <td className="p-4 text-center">
                                                 <button className="text-sm text-gray-500 hover:text-red-500">
@@ -214,10 +219,10 @@ export default function CartPage() {
                                 <div key={c.cartItemId} className="bg-white rounded-xl p-3 shadow-sm">
 
                                     <div className="flex justify-center items-center gap-3">
-                                        <input type="checkbox" 
-                                        checked = { selectedId.includes(c.cartItemId) }
-                                        onChange={() => checkItem(c.cartItemId)}
-                                        className="mt-2 w-4 h-4 accent-orange-500 cursor-pointer" />
+                                        <input type="checkbox"
+                                            checked={selectedId.includes(c.cartItemId)}
+                                            onChange={() => checkItem(c.cartItemId)}
+                                            className="mt-2 w-4 h-4 accent-orange-500 cursor-pointer" />
 
                                         <img
                                             src={c.image}
@@ -236,14 +241,23 @@ export default function CartPage() {
 
                                             <div className="flex items-center justify-between">
                                                 <span className="text-red-500 font-semibold">
-                                                    {(c.selectedVariant.price * c.quantity).toLocaleString()}đ
+                                                    {c.selectedVariant.oldPrice ? (
+                                                        <span className="">
+                                                            {(c.selectedVariant.oldPrice * c.quantity).toLocaleString()}đ
+                                                        </span>
+                                                    ) : (
+                                                        <span className="">
+                                                            {(c.selectedVariant.price * c.quantity).toLocaleString()}đ
+                                                        </span>
+                                                    )}
+
                                                 </span>
 
-                                                <div className="flex items-center border rounded">
-                                                    <button className="w-7 h-7">-</button>
-                                                    <span className="w-8 text-center">{c.quantity}</span>
-                                                    <button className="w-7 h-7">+</button>
-                                                </div>
+                                                <QuantitySelector
+                                                    value={c.quantity}
+                                                    onIncrease={() => updateQuantity(c.cartItemId, "inc")}
+                                                    onDecrease={() => updateQuantity(c.cartItemId, "dec")}
+                                                />
                                             </div>
                                         </div>
                                     </div>
