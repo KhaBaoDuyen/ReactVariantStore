@@ -10,10 +10,12 @@ import { Button } from "~/components/UI/ButtonIcon/buttonIcon";
 import { ImagesZoom } from "~/components/UI/ImagesZoom";
 import SwipeToSlide from "~/components/UI/SwipeToSlide/SwipeToSlide";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
-import { BrandFilterSlider } from "~/components/UI/BrandFilterSlider/BrandFilterSlider";
-import { SwiperBlogSlide } from "~/components/UI/SwiperBlogSlide/SwiperBlogSlide";
+import { BrandFilterSlider } from "~/components/features/brand/BrandFilterSlider/BrandFilterSlider";
+import { SwiperBlogSlide } from "~/components/features/blog/SwiperBlogSlide/SwiperBlogSlide";
 import ImagesStack from "~/components/UI/ImagesStack/ImagesStack";
-import { FeatureSection } from "~/components/UI/FeatureCard/FeatureSection";
+import { FeatureSection } from "~/components/features/banner/FeatureCard/FeatureSection";
+import { ProductFeaturedCard } from "~/components/features/products/ProductFeaturedCard/ProductFeaturedCard";
+
 //UTILS
 import { useMediaQuery } from "~/hooks/useMediaQuery";
 
@@ -23,7 +25,6 @@ import { BLOG_DATA } from "~/data/blogs.data";
 import { PRODUCTS_DATA } from "~/data/products.data";
 import { CATEGOGY_DATA } from "~/data/categories.data";
 import { BRAND_DATA } from "~/data/brands.data";
-import { ProductFeaturedCard } from "~/components/UI/ProductFeaturedCard/ProductFeaturedCard";
 export default function HomePage() {
   const isMobile = useMediaQuery("(max-width: 1023px)");
 

@@ -14,9 +14,8 @@ import { CATEGOGY_DATA } from "~/data/categories.data";
 //COMPONENR
 import { Button } from "~/components/UI/ButtonIcon/buttonIcon";
 import { ContactGroup } from "~/components/UI/ButtonContact";
-import { ProductCard } from "~/components/UI/ProductCard/productCard";
-import { ImagesForcus } from "~/components/UI/ImagesForcus/ImagesForcus";
-
+import { ProductCard } from "~/components/features/products/ProductCard/productCard";
+ 
 
 export default function ProductDetailPage() {
     const { slug } = useParams();

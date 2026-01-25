@@ -9,10 +9,10 @@ import { Search } from "~/components/UI/Search";
 import { ButtonAnimation } from "~/components/UI/ButtonAnimation/buttonAnimation";
 import { ImagesForcus } from "~/components/UI/ImagesForcus/ImagesForcus";
 import { CategoryBannerSlide } from "~/components/UI/ImagesBannerSlider/ImagesBannerSlider";
-import { ProductByCategogy, SliderProductByCategogy } from "~/components/UI/ProductByCategogy/ProductByCategogy";
+import { ProductByCategogy, SliderProductByCategogy } from "~/components/features/products/ProductByCategogy/ProductByCategogy";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
 import { SortDropdown } from "~/components/UI/SortDropdown/SortDropdown";
-import { ProductCard } from "~/components/UI/ProductCard/productCard";
+import { ProductCard } from "~/components/features/products/ProductCard/productCard";
 import CustomPagination from "~/components/common/CustomPagination";
 import { ContactGroup } from "~/components/UI/ButtonContact";
 

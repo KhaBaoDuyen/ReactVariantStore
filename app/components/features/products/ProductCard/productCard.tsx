@@ -3,7 +3,7 @@ import { productProp } from "./productCard.type";
 import { formatCompact } from "~/utils/formatCompact";
 import { formatVND } from "~/utils/formatVND";
 
-import { StarRating } from "../StarRating/StarRating";
+import { StarRating } from "~/components/UI/StarRating/StarRating";
 
 export const ProductCard = ({
     name,

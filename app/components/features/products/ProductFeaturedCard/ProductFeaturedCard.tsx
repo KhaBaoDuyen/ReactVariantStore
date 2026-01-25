@@ -9,7 +9,7 @@ export const ProductFeaturedCard = ({
     name,
     image,
     price,
-    priceReduced = 0,
+    priceReduced,
     description,
     sold
 }: ProductFeaturedItem) => {
@@ -43,7 +43,7 @@ export const ProductFeaturedCard = ({
                             <span className="text-red font-bold text-lg">
                                 {formatVND(price)}
                             </span>
-                            {priceReduced > 0 && (
+                            { priceReduced &&priceReduced > 0 && (
                                 <span className="text-sm text-gray-500 line-through">
                                     {formatVND(priceReduced)}
                                 </span>

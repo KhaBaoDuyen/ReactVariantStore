@@ -6,8 +6,8 @@ import { Link } from "react-router";
 //COMPONENT
 import { Search } from "~/components/UI/Search";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
-import { SwiperBlogSlide } from "~/components/UI/SwiperBlogSlide/SwiperBlogSlide";
-import { BlogCard } from "~/components/UI/BlogCard/BlogCard";
+import { SwiperBlogSlide } from "~/components/features/blog/SwiperBlogSlide/SwiperBlogSlide";
+import { BlogCard } from "~/components/features/blog/BlogCard/BlogCard";
 import CustomPagination from "~/components/common/CustomPagination";
 
 //DATA

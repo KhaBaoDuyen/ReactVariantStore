@@ -9,7 +9,7 @@ import { STORE_LOCATION } from "~/data/storeMap";
 import type { StoreMap } from "./StoreMap.type";
 
 // COMPONENT
-import { StoreLocationCard } from "~/components/UI/StoreLocationCard/storeLocationCard";
+import { StoreLocationCard } from "~/components/features/StoreLocationCard/storeLocationCard";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN as string;
 
