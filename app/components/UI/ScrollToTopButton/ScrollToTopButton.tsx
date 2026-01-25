@@ -17,7 +17,7 @@ export const ScrollToTopButton = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-6 right-6 z-50 
+            className="fixed lg:bottom-6 bottom-20 lg:right-6 right-3 z-50 
                  bg-accent-600 bg-accent-hover text-white 
                  w-10 h-10 rounded-md 
                  flex items-center justify-center
