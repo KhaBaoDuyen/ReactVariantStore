@@ -1,5 +1,5 @@
 export type StarRatingProps = {
-  value: number;        
-  max?: number;         
-  size?: number;     
+	value: number;
+	max?: number;
+	size?: number;
 };

@@ -1,7 +1,7 @@
-import { Variant } from "../Variant.type";
+import type { Variant } from "../Variant.type";
 
 export type VariantButtonProps = {
-  variant: Variant;
-  isSelected: boolean;
-  onClick?: () => void;
+	variant: Variant;
+	isSelected: boolean;
+	onClick?: () => void;
 };

@@ -1,380 +1,428 @@
+import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import logo from "../../../../public/assets/images/logo-dark.png";
-import { ChevronDown } from "lucide-react";
 
-//COMPOENTNS
-import { Search } from "~/components/UI/Search";
 import { Button } from "~/components/UI/ButtonIcon/buttonIcon";
+import SaleProduct from "~/components/UI/CalcSalePercent/CalcSalePercent";
 import Loading from "~/components/UI/Loading/loading";
 import QuantitySelector from "~/components/UI/QuantitySelector/QuantitySelector";
+//COMPOENTNS
+import { Search } from "~/components/UI/Search";
 import VariantSelector from "~/components/UI/Variant/VariantSelector/VariantSelector";
-import SaleProduct from "~/components/UI/CalcSalePercent/CalcSalePercent";
 
+// SERVICE
+import { getCart } from "~/service/cart.service";
 // UTILS
 import { calcSalePercent } from "~/utils/caltSaleProduct";
 import { formatVND } from "~/utils/formatVND";
-// SERVICE 
-import { getCart } from "~/service/cart.service";
-
 
 export default function CartPage() {
-    const [cart, setCart] = useState<any[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-    const [selectedId, setSelectedId] = useState<string[]>([]);
-    const [variantSelectorOpen, setVariantSelectorOpen] = useState<string | null>(null);
+	const [cart, setCart] = useState<any[]>([]);
+	const [loading, setLoading] = useState<boolean>(true);
+	const [error, setError] = useState<string | null>(null);
+	const [selectedId, setSelectedId] = useState<string[]>([]);
+	const [variantSelectorOpen, setVariantSelectorOpen] = useState<string | null>(
+		null,
+	);
 
-    //HAM CHECK 
-    const checkItem = (cartItemId: string) => {
-        setSelectedId((prev) =>
-            prev.includes(cartItemId)
-                ? prev.filter((item) => item !== cartItemId)
-                : [...prev, cartItemId]
-        );
-    };
+	//HAM CHECK
+	const checkItem = (cartItemId: string) => {
+		setSelectedId((prev) =>
+			prev.includes(cartItemId)
+				? prev.filter((item) => item !== cartItemId)
+				: [...prev, cartItemId],
+		);
+	};
 
-    const checkAll = () => {
-        if (selectedId.length === cart.length) {
-            setSelectedId([]);
-        } else {
-            setSelectedId(cart.map((item) => item.cartItemId));
-        }
-    };
+	const checkAll = () => {
+		if (selectedId.length === cart.length) {
+			setSelectedId([]);
+		} else {
+			setSelectedId(cart.map((item) => item.cartItemId));
+		}
+	};
 
-    const totalChecked = selectedId.length;
-    const totalItems = cart.length;
-    const totalPrice = cart
-        .filter((item) => selectedId.includes(item.cartItemId))
-        .reduce((total, item) => total + item.selectedVariant.price * item.quantity, 0);
+	const totalChecked = selectedId.length;
+	const totalItems = cart.length;
+	const totalPrice = cart
+		.filter((item) => selectedId.includes(item.cartItemId))
+		.reduce(
+			(total, item) => total + item.selectedVariant.price * item.quantity,
+			0,
+		);
 
-    //QuantitySelector check
-    const updateQuantity = (id: string, type: "inc" | "dec") => {
-        setCart((prev) =>
-            prev.map((item) =>
-                item.cartItemId === id
-                    ? {
-                        ...item,
-                        quantity:
-                            type === "inc"
-                                ? item.quantity + 1
-                                : Math.max(1, item.quantity - 1),
-                    }
-                    : item
-            )
-        );
-    };
+	//QuantitySelector check
+	const updateQuantity = (id: string, type: "inc" | "dec") => {
+		setCart((prev) =>
+			prev.map((item) =>
+				item.cartItemId === id
+					? {
+							...item,
+							quantity:
+								type === "inc"
+									? item.quantity + 1
+									: Math.max(1, item.quantity - 1),
+						}
+					: item,
+			),
+		);
+	};
 
-    // Props VAriantSelector
-    const totalVariantOpen = async (cartItemId: string) => {
-        setVariantSelectorOpen((prev) => (prev === cartItemId ? null : cartItemId));
-    }
+	// Props VAriantSelector
+	const totalVariantOpen = async (cartItemId: string) => {
+		setVariantSelectorOpen((prev) => (prev === cartItemId ? null : cartItemId));
+	};
 
+	// fech cart data
+	const fetchCartData = async () => {
+		setLoading(true);
+		try {
+			const data = await getCart();
+			setCart(data.items);
+		} catch (error) {
+			setError("Lỗi khi tải dữ liệu giỏ hàng.");
+		} finally {
+			setLoading(false);
+		}
+	};
 
-    // fech cart data
-    const fetchCartData = async () => {
-        setLoading(true);
-        try {
-            const data = await getCart();
-            setCart(data.items);
-        } catch (error) {
-            setError("Lỗi khi tải dữ liệu giỏ hàng.");
-        } finally {
-            setLoading(false);
-        }
-    };
+	useEffect(() => {
+		fetchCartData();
+	}, []);
 
-
-    useEffect(() => {
-        fetchCartData();
-    }, []);
-
-    return (
-        <div className="min-h-screen ">
-            <div className="bg-white shadow-md sticky w-full top-0 z-10">
-                <div className="lg:w-10/12 w-11/12 mx-auto py-4 md:py-6 
-                  flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-
-                    <div className="flex lg:w-7/12 items-center gap-3 text-accent-600">
-                        <img
-                            src={logo}
-                            alt="logo"
-                            className="w-28 sm:w-32 md:w-36 lg:w-40 
+	return (
+		<div className="min-h-screen ">
+			<div className="bg-white shadow-md sticky w-full top-0 z-10">
+				<div
+					className="lg:w-10/12 w-11/12 mx-auto py-4 md:py-6 
+                  flex flex-col md:flex-row md:items-center md:justify-between gap-3"
+				>
+					<div className="flex lg:w-7/12 items-center gap-3 text-accent-600">
+						<img
+							src={logo}
+							alt="logo"
+							className="w-28 sm:w-32 md:w-36 lg:w-40 
                    drop-shadow-[0_6px_12px_rgba(0,0,0,0.25)]"
-                        />
-                        <span className="text-2xl">|</span>
+						/>
+						<span className="text-2xl">|</span>
 
-                        <h1 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-semibold">
-                            Giỏ Hàng Của Tôi
-                        </h1>
-                    </div>
+						<h1 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-semibold">
+							Giỏ Hàng Của Tôi
+						</h1>
+					</div>
 
-                    <div className="w-full  md:w-auto">
-                        <Search type="outline" width="w-full" showOnMobile={true} />
-                    </div>
+					<div className="w-full  md:w-auto">
+						<Search type="outline" width="w-full" showOnMobile={true} />
+					</div>
+				</div>
+			</div>
 
-                </div>
-            </div>
+			{loading ? (
+				<Loading text="Đang tải dữ liệu giỏ hàng" />
+			) : error ? (
+				<p className="text-red-500 text-center my-10">{error}</p>
+			) : cart.length === 0 ? (
+				<p className="text-center my-10">Giỏ hàng của bạn đang trống.</p>
+			) : (
+				<>
+					<div className="gio-hang ">
+						<div className="hidden md:block lg:w-10/12 w-11/12 mx-auto my-8 shadow">
+							<table className="w-full border-collapse bg-white rounded-lg  ">
+								<thead className="bg-gray-50 text-gray-500 text-sm ">
+									<tr className="">
+										<th className="p-4 text-left" colSpan={2}>
+											<input
+												type="checkbox"
+												checked={
+													selectedId.length === cart.length && cart.length > 0
+												}
+												onChange={checkAll}
+												className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer"
+											/>
+											Sản phẩm
+										</th>
+										<th className="p-4 text-center">Giá</th>
+										<th className="p-4 text-center">Số lượng</th>
+										<th className="p-4 text-center">Tổng cộng</th>
+										<th className="p-4 text-center">Thao tác</th>
+									</tr>
+								</thead>
 
-            {loading ? (
-                <Loading text="Đang tải dữ liệu giỏ hàng" />
-            ) : error ? (
-                <p className="text-red-500 text-center my-10">{error}</p>
-            ) : cart.length === 0 ? (
-                <p className="text-center my-10">Giỏ hàng của bạn đang trống.</p>
-            ) : (
-                <>
-                    <div className="gio-hang ">
-                        <div className="hidden md:block lg:w-10/12 w-11/12 mx-auto my-8 shadow">
-                            <table className="w-full border-collapse bg-white rounded-lg  ">
-                                <thead className="bg-gray-50 text-gray-500 text-sm ">
-                                    <tr className="">
-                                        <th className="p-4 text-left" colSpan={2}>
-                                            <input type="checkbox"
-                                                checked={selectedId.length === cart.length && cart.length > 0}
-                                                onChange={checkAll}
-                                                className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer" />
-                                            Sản phẩm
-                                        </th>
-                                        <th className="p-4 text-center">Giá</th>
-                                        <th className="p-4 text-center">Số lượng</th>
-                                        <th className="p-4 text-center">Tổng cộng</th>
-                                        <th className="p-4 text-center">Thao tác</th>
-                                    </tr>
-                                </thead>
+								<tbody>
+									{cart.map((c, index) => {
+										const salePrice = calcSalePercent(
+											c.selectedVariant.price,
+											c.selectedVariant.oldPrice,
+										);
+										return (
+											<tr key={c.cartItemId} className="border-t">
+												<td className="p-4">
+													<div className="flex items-center gap-3">
+														<input
+															type="checkbox"
+															checked={selectedId.includes(c.cartItemId)}
+															onChange={() => checkItem(c.cartItemId)}
+															className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer"
+														/>
 
-                                <tbody>
-                                    {cart.map((c, index) => {
-                                        const salePrice = calcSalePercent(c.selectedVariant.price, c.selectedVariant.oldPrice);
-                                        return (
-                                            <tr key={c.cartItemId} className="border-t">
-                                                <td className="p-4">
-                                                    <div className="flex items-center gap-3">
-                                                        <input
-                                                            type="checkbox"
-                                                            checked={selectedId.includes(c.cartItemId)}
-                                                            onChange={() => checkItem(c.cartItemId)}
-                                                            className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer"
-                                                        />
+														<img
+															src={c.image}
+															className="w-16 h-16 rounded object-cover"
+															alt={c.productName}
+														/>
+														<span className="">
+															<p className="font-medium text-sm  line-clamp-2">
+																{c.productName}
+															</p>
+															{c.selectedVariant.oldPrice >
+															c.selectedVariant.price ? (
+																<span className="text-xs flex text-gray-500">
+																	<p>sản phẩm đang giảm</p>
+																	<SaleProduct
+																		price={c.selectedVariant.oldPrice}
+																		salePrice={c.selectedVariant.price}
+																		bgColor={false}
+																	/>
+																</span>
+															) : (
+																<p>{formatVND(c.selectedVariant.price)}</p>
+															)}
+														</span>
+													</div>
+												</td>
+												<td className="relative">
+													<span className="">
+														<button
+															className=" flex"
+															onClick={() => totalVariantOpen(c.cartItemId)}
+														>
+															<p className="font-medium text-sm"> Phân loại </p>
+															<ChevronDown className="text-gray-500" />
+														</button>
 
-                                                        <img
-                                                            src={c.image}
-                                                            className="w-16 h-16 rounded object-cover"
-                                                            alt={c.productName}
-                                                        />
-                                                        <span className="">
-                                                            <p className="font-medium text-sm  line-clamp-2">
-                                                                {c.productName}
-                                                            </p>
-                                                            {c.selectedVariant.oldPrice > c.selectedVariant.price ? (
-                                                                <span className="text-xs flex text-gray-500">
-                                                                    <p>sản phẩm đang giảm</p>
-                                                                    <SaleProduct
-                                                                        price={c.selectedVariant.oldPrice}
-                                                                        salePrice={c.selectedVariant.price}
-                                                                        bgColor={false}
-                                                                    />
-                                                                </span>
-                                                            ) : (
-                                                                <p>{formatVND(c.selectedVariant.price)}</p>
-                                                            )}
-                                                        </span>
+														<p className="text-xs text-gray-500">
+															{c.selectedVariant.variantName}
+														</p>
+													</span>
+													{variantSelectorOpen === c.cartItemId && (
+														<div
+															className="absolute bg-white z-50 rounded overflow-hidden  -left-5 w-[240px]"
+															onClick={() => setVariantSelectorOpen(null)}
+														>
+															<div
+																onClick={(e) => e.stopPropagation()}
+																className=""
+															>
+																<VariantSelector
+																	variants={c.variants}
+																	selectedVariantId={
+																		c.selectedVariant.variantId
+																	}
+																	onSelect={(variant) => {
+																		setVariantSelectorOpen(null);
+																	}}
+																/>
+															</div>
+														</div>
+													)}
+												</td>
+												<td className="p-4 text-center">
+													{c.selectedVariant.oldPrice >
+													c.selectedVariant.price ? (
+														<>
+															<p className="line-through text-gray-400 text-sm">
+																{formatVND(c.selectedVariant.oldPrice)}
+															</p>
 
-                                                    </div>
-                                                </td>
-                                                <td className="relative">
-                                                    <span className="">
-                                                        <button className=" flex" onClick={() => totalVariantOpen(c.cartItemId)}>
-                                                            <p className="font-medium text-sm"> Phân loại </p>
-                                                            <ChevronDown className="text-gray-500" />
-                                                        </button>
+															<p className="text-red-500 text-sm font-bold">
+																<span className="text-sm">
+																	{" "}
+																	giảm sau khi giảm
+																</span>{" "}
+																{formatVND(c.selectedVariant.price)}
+															</p>
+														</>
+													) : (
+														<p>{formatVND(c.selectedVariant.price)}</p>
+													)}
+												</td>
 
-                                                        <p className="text-xs text-gray-500">
-                                                            {c.selectedVariant.variantName}
-                                                        </p>
-                                                    </span>
-                                                    {variantSelectorOpen === c.cartItemId && (
-                                                        <div className="absolute bg-white z-50 rounded overflow-hidden  -left-5 w-[240px]"
-                                                            onClick={() => setVariantSelectorOpen(null)}>
-                                                            <div
-                                                                onClick={(e) => e.stopPropagation()}
-                                                                className="">
-                                                                <VariantSelector
-                                                                    variants={c.variants}
-                                                                    selectedVariantId={c.selectedVariant.variantId}
-                                                                    onSelect={(variant) => {
-                                                                        setVariantSelectorOpen(null);
-                                                                    }} />
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                                </td>
-                                                <td className="p-4 text-center">
-                                                    {c.selectedVariant.oldPrice > c.selectedVariant.price ? (
-                                                        <>
-                                                            <p className="line-through text-gray-400 text-sm">
-                                                                {formatVND(c.selectedVariant.oldPrice)}
-                                                            </p>
+												<td className="p-4 text-center">
+													<QuantitySelector
+														value={c.quantity}
+														onIncrease={() =>
+															updateQuantity(c.cartItemId, "inc")
+														}
+														onDecrease={() =>
+															updateQuantity(c.cartItemId, "dec")
+														}
+													/>
+												</td>
+												<td className="p-4 text-center text-red-500 font-semibold">
+													{formatVND(c.selectedVariant.price * c.quantity)}
+													{salePrice && (
+														<SaleProduct
+															price={c.selectedVariant.price * c.quantity}
+															salePrice={
+																c.selectedVariant.oldPrice * c.quantity
+															}
+														/>
+													)}
+												</td>
+												<td className="p-4 text-center">
+													<button className="text-sm text-gray-500 hover:text-red-500">
+														Xóa
+													</button>
+												</td>
+											</tr>
+										);
+									})}
+								</tbody>
+							</table>
+						</div>
+						{/* mobile */}
+						<div className="block md:hidden bg-gray-50 ">
+							<div className="p-3 space-y-3">
+								{cart.map((c) => {
+									const hasSale =
+										c.selectedVariant.oldPrice > c.selectedVariant.price;
+									return (
+										<div
+											key={c.cartItemId}
+											className="bg-white rounded-xl p-4 shadow-sm border border-gray-100"
+										>
+											<div className="flex gap-3">
+												<div className="flex flex-col items-center justify-center gap-4">
+													<input
+														type="checkbox"
+														checked={selectedId.includes(c.cartItemId)}
+														onChange={() => checkItem(c.cartItemId)}
+														className="w-5 h-5 accent-orange-500 cursor-pointer"
+													/>
+												</div>
 
-                                                            <p className="text-red-500 text-sm font-bold">
-                                                                <span className="text-sm"> giảm sau khi giảm</span> {formatVND(c.selectedVariant.price)}
-                                                            </p>
-                                                        </>
-                                                    ) : (
-                                                        <p>{formatVND(c.selectedVariant.price)}</p>
-                                                    )}
-                                                </td>
+												<div className="relative w-24 h-24 flex-shrink-0">
+													<img
+														src={c.image}
+														className="w-full h-full rounded-lg object-cover"
+														alt={c.productName}
+													/>
+												</div>
 
+												<div className="flex-1 flex flex-col justify-between min-w-0">
+													<div>
+														<div className="flex justify-between items-start">
+															<p className="text-[13px] font-medium line-clamp-2 text-gray-800 leading-tight pr-2">
+																{c.productName}
+															</p>
+															<button
+																onClick={() => {
+																	/* logic xóa của bạn */
+																}}
+																className="text-gray-400 hover:text-red-500"
+															>
+																<span className="text-xs">Xóa</span>
+															</button>
+														</div>
 
-                                                <td className="p-4 text-center">
-                                                    <QuantitySelector
-                                                        value={c.quantity}
-                                                        onIncrease={() => updateQuantity(c.cartItemId, "inc")}
-                                                        onDecrease={() => updateQuantity(c.cartItemId, "dec")}
-                                                    />
-                                                </td>
-                                                <td className="p-4 text-center text-red-500 font-semibold">
-                                                    {formatVND(c.selectedVariant.price * c.quantity)}
-                                                    {
-                                                        salePrice && (
-                                                            <SaleProduct
-                                                                price={c.selectedVariant.price * c.quantity}
-                                                                salePrice={c.selectedVariant.oldPrice * c.quantity} />
-                                                        )
-                                                    }
-                                                </td>
-                                                <td className="p-4 text-center">
-                                                    <button className="text-sm text-gray-500 hover:text-red-500">
-                                                        Xóa
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        )
+														{/* Variant Selector Mobile */}
+														<div className="relative mt-1">
+															<button
+																className="bg-gray-100 px-2 py-1 rounded flex items-center gap-1"
+																onClick={() => totalVariantOpen(c.cartItemId)}
+															>
+																<span className="text-[11px] text-gray-600 truncate max-w-[80px]">
+																	Phân loại: {c.selectedVariant.variantName}
+																</span>
+																<ChevronDown
+																	size={12}
+																	className="text-gray-400"
+																/>
+															</button>
 
-                                    })}
-                                </tbody>
+															{variantSelectorOpen === c.cartItemId && (
+																<div className="absolute left-0 top-7 bg-white z-[60] shadow-xl border rounded-lg w-[200px] p-2">
+																	<VariantSelector
+																		variants={c.variants}
+																		selectedVariantId={
+																			c.selectedVariant.variantId
+																		}
+																		onSelect={(variant) => {
+																			setVariantSelectorOpen(null);
+																			// Gọi hàm cập nhật variant
+																		}}
+																	/>
+																</div>
+															)}
+														</div>
+													</div>
 
-                            </table>
-                        </div>
-                        {/* mobile */}
-                        <div className="block md:hidden bg-gray-50 ">
-                            <div className="p-3 space-y-3">
-                                {cart.map((c) => {
-                                    const hasSale = c.selectedVariant.oldPrice > c.selectedVariant.price;
-                                    return (
-                                        <div key={c.cartItemId} className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                                            <div className="flex gap-3">
-                                                 <div className="flex flex-col items-center justify-center gap-4">
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={selectedId.includes(c.cartItemId)}
-                                                        onChange={() => checkItem(c.cartItemId)}
-                                                        className="w-5 h-5 accent-orange-500 cursor-pointer"
-                                                    />
-                                                </div>
+													<div className="mt-2 flex items-end justify-between">
+														<div className="flex flex-col">
+															{hasSale && (
+																<span className="text-[10px] text-gray-400 line-through">
+																	{formatVND(c.selectedVariant.oldPrice)}
+																</span>
+															)}
+															<span className="text-orange-600 font-bold text-sm">
+																{formatVND(c.selectedVariant.price)}
+															</span>
+														</div>
 
-                                                <div className="relative w-24 h-24 flex-shrink-0">
-                                                    <img
-                                                        src={c.image}
-                                                        className="w-full h-full rounded-lg object-cover"
-                                                        alt={c.productName}
-                                                    />
-                                                </div>
+														<QuantitySelector
+															value={c.quantity}
+															onIncrease={() =>
+																updateQuantity(c.cartItemId, "inc")
+															}
+															onDecrease={() =>
+																updateQuantity(c.cartItemId, "dec")
+															}
+														/>
+													</div>
+												</div>
+											</div>
+										</div>
+									);
+								})}
+							</div>
+						</div>
+					</div>
+				</>
+			)}
 
-                                                 <div className="flex-1 flex flex-col justify-between min-w-0">
-                                                    <div>
-                                                        <div className="flex justify-between items-start">
-                                                            <p className="text-[13px] font-medium line-clamp-2 text-gray-800 leading-tight pr-2">
-                                                                {c.productName}
-                                                            </p>
-                                                            <button
-                                                                onClick={() => {/* logic xóa của bạn */ }}
-                                                                className="text-gray-400 hover:text-red-500"
-                                                            >
-                                                                <span className="text-xs">Xóa</span>
-                                                            </button>
-                                                        </div>
+			<div
+				className="bg-white lg:w-10/12  flex items-center justify-between mx-auto rounded 
+            shadow-[0_-4px_12px_rgba(0,0,0,0.08)] sticky bottom-0 z-10"
+			>
+				<div className="p-4 text-left flex lg:gap-3 lg:justify-center items-center">
+					<input
+						type="checkbox"
+						checked={selectedId.length === cart.length && cart.length > 0}
+						onChange={checkAll}
+						className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer"
+					/>
+					<p className=" whitespace-nowrap text-sm w-full ">
+						Chọn tất cả <span className="">({totalItems})</span>{" "}
+					</p>
+					<p className="hidden lg:block">({totalChecked})</p>
+					<button className="text-sm hidden lg:block text-gray-500 hover:text-red-500">
+						Xóa
+					</button>
+				</div>
 
-                                                        {/* Variant Selector Mobile */}
-                                                        <div className="relative mt-1">
-                                                            <button
-                                                                className="bg-gray-100 px-2 py-1 rounded flex items-center gap-1"
-                                                                onClick={() => totalVariantOpen(c.cartItemId)}
-                                                            >
-                                                                <span className="text-[11px] text-gray-600 truncate max-w-[80px]">
-                                                                    Phân loại: {c.selectedVariant.variantName}
-                                                                </span>
-                                                                <ChevronDown size={12} className="text-gray-400" />
-                                                            </button>
-
-                                                            {variantSelectorOpen === c.cartItemId && (
-                                                                <div className="absolute left-0 top-7 bg-white z-[60] shadow-xl border rounded-lg w-[200px] p-2">
-                                                                    <VariantSelector
-                                                                        variants={c.variants}
-                                                                        selectedVariantId={c.selectedVariant.variantId}
-                                                                        onSelect={(variant) => {
-                                                                            setVariantSelectorOpen(null);
-                                                                            // Gọi hàm cập nhật variant  
-                                                                        }}
-                                                                    />
-                                                                </div>
-                                                            )}
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="mt-2 flex items-end justify-between">
-                                                        <div className="flex flex-col">
-                                                            {hasSale && (
-                                                                <span className="text-[10px] text-gray-400 line-through">
-                                                                    {formatVND(c.selectedVariant.oldPrice)}
-                                                                </span>
-                                                            )}
-                                                            <span className="text-orange-600 font-bold text-sm">
-                                                                {formatVND(c.selectedVariant.price)}
-                                                            </span>
-                                                        </div>
-
-                                                        <QuantitySelector
-                                                            value={c.quantity}
-                                                            onIncrease={() => updateQuantity(c.cartItemId, "inc")}
-                                                            onDecrease={() => updateQuantity(c.cartItemId, "dec")}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                    </div>
-                </>
-            )}
-
-            <div className="bg-white lg:w-10/12  flex items-center justify-between mx-auto rounded 
-            shadow-[0_-4px_12px_rgba(0,0,0,0.08)] sticky bottom-0 z-10">
-                <div className="p-4 text-left flex lg:gap-3 lg:justify-center items-center">
-                    <input type="checkbox"
-                        checked={selectedId.length === cart.length && cart.length > 0}
-                        onChange={checkAll}
-                        className="mr-2 w-4 h-4 accent-orange-500 cursor-pointer" />
-                    <p className=" whitespace-nowrap text-sm w-full ">Chọn tất cả <span className="">({totalItems})</span> </p>
-                    <p className="hidden lg:block">({totalChecked})</p>
-                    <button className="text-sm hidden lg:block text-gray-500 hover:text-red-500">
-                        Xóa
-                    </button>
-                </div>
-
-                <div className="p-4 text-right flex lg:items-center gap-4">
-                    <span className="flex gap-3 lg:items-center items-start">
-                        <p className="text-lg font-semibold lg:block hidden">Tổng tiền:</p>
-                        <h1 className="text-accent-600 font-bold lg:text-2xl">{formatVND(totalPrice)}</h1>
-                    </span>
-                    < Button className="">
-                        <p className=" whitespace-nowrap text-sm">Mua hàng</p>  <span className="block lg:hidden">({totalChecked})</span>
-                    </Button>
-                </div>
-            </div>
-        </div>
-    )
-};
+				<div className="p-4 text-right flex lg:items-center gap-4">
+					<span className="flex gap-3 lg:items-center items-start">
+						<p className="text-lg font-semibold lg:block hidden">Tổng tiền:</p>
+						<h1 className="text-accent-600 font-bold lg:text-2xl">
+							{formatVND(totalPrice)}
+						</h1>
+					</span>
+					<Button className="">
+						<p className=" whitespace-nowrap text-sm">Mua hàng</p>{" "}
+						<span className="block lg:hidden">({totalChecked})</span>
+					</Button>
+				</div>
+			</div>
+		</div>
+	);
+}
