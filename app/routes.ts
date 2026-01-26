@@ -9,6 +9,5 @@ export default [
   route("/he-thong-cua-hang", "routes/main/storeMap.tsx"),
   route("/lien-he", "routes/main/contact.tsx"),
   route("/gio-hang-cua-toi", "routes/main/carts/cart.tsx"),
-  route("/dang-nhap", "routes/auth/login.tsx"),
-  route("/dang-ky", "routes/auth/resgister.tsx"),
-] satisfies RouteConfig;
+  route("/buyer/auth", "routes/auth/auth.tsx"),
+ ] satisfies RouteConfig;
