@@ -102,7 +102,7 @@ export const Header = () => {
                                 </span>
                             )}
                         </Link>
-                        <Link to={"/dang-nhap"} className="hidden lg:flex items-center gap-1 hover:text-red-600">
+                        <Link to={"/buyer/auth"} className="hidden lg:flex items-center gap-1 hover:text-red-600">
                             <User size={20} />
                             <span>Đăng nhập</span>
                         </Link>
