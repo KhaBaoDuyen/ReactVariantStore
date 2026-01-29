@@ -162,7 +162,6 @@ export default function HomePage() {
                   name={i.name}
                   image={i.image}
                   price={i.price}
-                  priceReduced={i.priceReduced}
                   description={i.description}
                   sold={i.sold}
                 />
@@ -178,7 +177,6 @@ export default function HomePage() {
                   name={i.name}
                   image={i.image}
                   price={i.price}
-                  priceReduced={i.priceReduced}
                   description={i.description}
                   sold={i.sold}
                 />
@@ -252,8 +250,6 @@ export default function HomePage() {
           </div>
         </span>
       </section>
-
-
       <FeatureSection />
     </div>
   );
