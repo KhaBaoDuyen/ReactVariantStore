@@ -25,8 +25,8 @@ export default [
   route("/admin/orders/:slug/edit", "routes/admin/orders/orderDetail.tsx"),
 
   route("/admin/users", "routes/admin/users/users.tsx"),
-  route("/admin/users/create", "routes/admin/users/userCreate.tsx"),
-  route("/admin/users/:slug/edit", "routes/admin/users/userEdit.tsx"),
+  route("/admin/users/create", "routes/admin/users/usersCreate.tsx"),
+  route("/admin/users/:slug/edit", "routes/admin/users/usersEdit.tsx"),
 
   route("/admin/categories", "routes/admin/categories/categories.tsx"),
   route("/admin/categories/create", "routes/admin/categories/categoryCreate.tsx",),
