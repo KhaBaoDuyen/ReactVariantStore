@@ -2,8 +2,8 @@
     name: string,
     image:string,
     price: number,
-    priceReduced?: number,
-    description: string,
+    priceReduced?: number | string,
+    description?: string,
     sold: number,
 }
 
