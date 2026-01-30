@@ -58,25 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return (
-    <div className="flex min-h-screen flex-col bg-primary-50">
-      <Header />
-
-      <main className="relative flex-1 ">
-         <div className="relative z-10">
-          <Outlet />
-        </div>
-         <img
-          src={bannerFooter}
-          alt=""
-          className="pointer-events-none absolute bottom-0 left-0 z-0 w-full"
-        />
-		<ScrollToTopButton />
-      </main>
-
-      <Footer />
-    </div>
-  );
+	return <Outlet />;
 }
 
 
