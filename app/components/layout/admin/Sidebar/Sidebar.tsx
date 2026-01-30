@@ -9,7 +9,7 @@ export const Sidebar = () => {
             <div className="p-4  ">
                 <img src={logo} alt="Logo" className="h-10 w-auto mx-auto" />
             </div>
-            <nav className=" mt-10">
+            <nav className=" mt-10 px-2">
                 <ul className="text-gray-400">
                     {SIDEBAR_DATA.map((item, index) => (
                         <li className="relative" key={index +1}>

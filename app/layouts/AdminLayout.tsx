@@ -9,7 +9,7 @@ export default function AdminLayout() {
 
 			<div className="flex flex-1 pl-0 pt-0 p-10 bg-white flex-col">
 				<Topbar />
-				<main className="flex-1 rounded-2xl bg-surface-50 p-6">
+				<main className="flex-1 rounded-2xl bg-surface-100 p-6">
 					<Outlet />
 				</main>
 			</div>
