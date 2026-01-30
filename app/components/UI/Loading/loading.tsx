@@ -1,4 +1,5 @@
 import {LoadingProps} from "./loading.type";
+
 export default function Loading({text= "Đang tải"}: LoadingProps) {
     return (
         <div className="  flex flex-col justify-center items-center gap-4 py-10 relative">
