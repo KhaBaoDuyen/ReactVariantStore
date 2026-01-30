@@ -7,7 +7,7 @@ export const Topbar = () => {
   const [openUser, setOpenUser] = useState(false);
 
   return (
-    <header className="flex items-center justify-between bg-white p-4 ">
+    <header className="flex items-center justify-between bg-white py-4 ">
       <Search showIcon={false} type="outline" />
 
       <div className="flex items-center gap-4 relative">
