@@ -1,37 +1,40 @@
 import { forwardRef } from "react";
-import type { FieldError } from "react-hook-form";
 
-type InputProp = {
+type TextareaProps = {
     label?: string;
     error?: any;
     className?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+} & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-export const Input = forwardRef<HTMLInputElement, InputProp>(
-    ({ label, error, className = "", id, ...props }, ref) => {
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+    ({ label, error, id, className = "", ...props }, ref) => {
         return (
-            <div>
+            <div className="flex flex-col gap-2">
                 {label && (
                     <label
                         htmlFor={id}
-                        className="block text-md font-bold text-accent-700 mb-2">
+                        className="font-bold text-accent-700"
+                    >
                         {label}
                     </label>
                 )}
 
-                <input
-                    ref={ref}
+                <textarea
+                    ref={ref} 
                     id={id}
                     {...props}
                     className={`
                         border rounded-lg px-3 py-2 w-full
+                        min-h-[100px]
+                        resize-y
+                        focus:outline-none focus:ring-2 focus:ring-orange-500
                         ${error ? "border-red-500" : "border-gray-300"}
                         ${className}
                     `}
                 />
 
                 {error && (
-                    <p className="text-sm text-red-500 mt-1">
+                    <p className="text-sm text-red-500">
                         {error.message}
                     </p>
                 )}
@@ -40,4 +43,4 @@ export const Input = forwardRef<HTMLInputElement, InputProp>(
     }
 );
 
-Input.displayName = "Input";
+Textarea.displayName = "Textarea";

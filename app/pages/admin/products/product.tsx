@@ -75,7 +75,7 @@ export default function ProductPage() {
                             text-white
                             bg-orange-600/50
                             px-3 py-2 font-bold  whitespace-nowrap rounded-md
-                            transition ">
+                            transition">
                                 Tất cả
                             </button>
                             {categories.map((cat, index) => (

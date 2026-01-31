@@ -7,12 +7,12 @@ import Slider from "react-slick";
 //COMPONENTS
 import TextType from '~/components/UI/TextType/textType';
 import { Button } from "~/components/UI/ButtonIcon/buttonIcon";
-import { ImagesZoom } from "~/components/UI/ImagesZoom";
+import { ImagesZoom } from "~/components/features/image/ImagesZoom";
 import SwipeToSlide from "~/components/UI/SwipeToSlide/SwipeToSlide";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
 import { BrandFilterSlider } from "~/components/features/brand/BrandFilterSlider/BrandFilterSlider";
 import { SwiperBlogSlide } from "~/components/features/blog/SwiperBlogSlide/SwiperBlogSlide";
-import ImagesStack from "~/components/UI/ImagesStack/ImagesStack";
+import ImagesStack from "~/components/features/image/ImagesStack/ImagesStack";
 import { FeatureSection } from "~/components/features/banner/FeatureCard/FeatureSection";
 import { ProductFeaturedCard } from "~/components/features/products/ProductFeaturedCard/ProductFeaturedCard";
 

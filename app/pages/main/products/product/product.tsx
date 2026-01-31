@@ -7,8 +7,8 @@ import { useState } from "react";
 //COMPONENTS
 import { Search } from "~/components/UI/Search";
 import { ButtonAnimation } from "~/components/UI/ButtonAnimation/buttonAnimation";
-import { ImagesForcus } from "~/components/UI/ImagesForcus/ImagesForcus";
-import { CategoryBannerSlide } from "~/components/UI/ImagesBannerSlider/ImagesBannerSlider";
+import { ImagesForcus } from "~/components/features/image/ImagesForcus/ImagesForcus";
+import { CategoryBannerSlide } from "~/components/features/image/ImagesBannerSlider/ImagesBannerSlider";
 import { ProductByCategogy, SliderProductByCategogy } from "~/components/features/products/ProductByCategogy/ProductByCategogy";
 import { SwipeCategoriesSlide } from "~/components/UI/SwipeCategoriesSlide/SwipeCategoriesSlide";
 import { SortDropdown } from "~/components/UI/SortDropdown/SortDropdown";
