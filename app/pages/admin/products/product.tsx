@@ -61,7 +61,7 @@ export default function ProductPage() {
                     <h1 className="text-2xl font-bold text-gray-800">
                         Quản lí sản phẩm
                     </h1>
-                    <Link to="/admin/productCreate"
+                    <Link to="/admin/products/create"
                         className="p-2 bg-accent-600 text-white rounded-md shadow-md">Thêm sản phẩm</Link>
                 </span>
 
