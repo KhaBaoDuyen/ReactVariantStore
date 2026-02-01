@@ -86,27 +86,6 @@ export default function ProductForm() {
         fetchCategory();
     }, []);
 
-    // VARIANT
-    const variants = useWatch({
-        name: "variants",
-        control
-    });
-
-    useEffect(() => {
-        if (!variants?.length) {
-            setValue("sold", 0);
-            return;
-        }
-
-        const totalSold = (variants ?? []).reduce(
-            (sum: number, item: any) => sum + (Number(item.quantity) || 0),
-            0
-        );
-
-        setValue("sold", totalSold);
-    }, [variants, setValue]);
-
-
     return (
         <>
             <FormProvider {...methods}>

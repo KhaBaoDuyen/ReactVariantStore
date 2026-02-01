@@ -26,22 +26,6 @@ export const ProductVariants = () => {
         setValue(`variants.${index}.image`, file);
     };
 
-    //Total variants
-    const variants = useWatch({
-        control,
-        name: "variants"
-    });
-
-    useEffect(() => {
-        const total = (variants ?? []).reduce(
-            (sum:number, item:any) => sum + (+item?.quantity || 0),
-            0
-        );
-
-        setValue("sold", total);
-    }, [variants, setValue]);
-
-
     return (
         <div className="col-span-2 space-y-6">
 
