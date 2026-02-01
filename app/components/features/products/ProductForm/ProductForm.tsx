@@ -1,4 +1,4 @@
-import { FormProvider, useForm, Controller } from "react-hook-form";
+import { FormProvider, useForm, Controller, useWatch } from "react-hook-form";
 import { useEffect, useState } from "react";
 
 import type { Product } from "~/types/product.type";
@@ -86,7 +86,25 @@ export default function ProductForm() {
         fetchCategory();
     }, []);
 
-    // ADD VARIANT
+    // VARIANT
+    const variants = useWatch({
+        name: "variants",
+        control
+    });
+
+    useEffect(() => {
+        if (!variants?.length) {
+            setValue("sold", 0);
+            return;
+        }
+
+        const totalSold = (variants ?? []).reduce(
+            (sum: number, item: any) => sum + (Number(item.quantity) || 0),
+            0
+        );
+
+        setValue("sold", totalSold);
+    }, [variants, setValue]);
 
 
     return (
@@ -149,7 +167,8 @@ export default function ProductForm() {
                         </div>
 
                         <Input id="sold"
-                            label="Số lượng"
+                            label="Tổng số lượng"
+                            type="number"
                             {...register("sold", {
                                 required: "Số lượng phải là số",
                                 valueAsNumber: true,

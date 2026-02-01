@@ -79,7 +79,7 @@ export const RichTextEditor = ({ label, value, onChange }: Props) => {
     return (
         <div className="space-y-2">
             {label && (
-                <p className="font-bold text-accent-700">{label}</p>
+                <p className="font-bold text-accent-600">{label}</p>
             )}
 
              <div className="flex flex-wrap gap-1 border p-2 rounded-md bg-gray-50">

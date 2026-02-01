@@ -1,10 +1,12 @@
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import { VariantItem } from "./VariantItem";
+import { useEffect } from "react";
 
 export const ProductVariants = () => {
     const {
         register,
         control,
+        watch,
         setValue,
         formState: { errors }
     } = useFormContext();
@@ -24,11 +26,27 @@ export const ProductVariants = () => {
         setValue(`variants.${index}.image`, file);
     };
 
+    //Total variants
+    const variants = useWatch({
+        control,
+        name: "variants"
+    });
+
+    useEffect(() => {
+        const total = (variants ?? []).reduce(
+            (sum:number, item:any) => sum + (+item?.quantity || 0),
+            0
+        );
+
+        setValue("sold", total);
+    }, [variants, setValue]);
+
+
     return (
         <div className="col-span-2 space-y-6">
 
             <div className="flex justify-between items-center">
-                <h3 className="font-semibold text-accent-600 text-md">Biến thể</h3>
+                <h3 className="font-bold text-accent-600 text-md">Biến thể</h3>
 
                 <button
                     type="button"

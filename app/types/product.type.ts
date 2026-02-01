@@ -11,4 +11,5 @@ export type Product = {
     sold:number;
     rating?:number;
     status?: boolean;
+    variants?:string[];
 };
