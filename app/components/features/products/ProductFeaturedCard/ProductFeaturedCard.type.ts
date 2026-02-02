@@ -2,7 +2,7 @@
     name: string,
     image:string,
     price: number,
-    priceReduced?: number | string,
+    salePrice?: number,
     description?: string,
     sold: number,
 }

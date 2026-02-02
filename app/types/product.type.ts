@@ -9,7 +9,7 @@ export type Product = {
     slug: string;
     description: string;
     price: number;
-    oldPrice?: number;
+    salePrice?: number;
     brandId: number;
     brand: Brand;
     categoryId: number;
