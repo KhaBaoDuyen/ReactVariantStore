@@ -117,7 +117,7 @@ export default function ProductPage() {
                                         <th className="py-3 px-4 text-left bg-gray-100  rounded-r-md"><EllipsisVertical /></th>
                                     </tr>
                                 </thead>
-                                {!loading ? <Loading /> : (
+                                {loading ? <Loading /> : (
                                     <tbody>
                                         {filterProductBYCategory.length === 0 ? (
                                             <tr>
