@@ -3,5 +3,5 @@ export type Category = {
     icon?: string;
     slug?: string;
     image?: string;
-    title: string;
+    name: string;
 }
