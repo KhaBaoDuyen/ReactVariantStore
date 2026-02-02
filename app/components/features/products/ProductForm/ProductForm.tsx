@@ -1,5 +1,6 @@
 import { FormProvider, useForm, Controller, useWatch } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 import type { Product } from "~/types/product.type";
 import type { Brand } from "~/types/brands.type";
@@ -17,6 +18,9 @@ import { ImageUpload } from "../../image/ImageUpload/ImageUpload";
 import { FilterSelect } from "~/components/UI/FilterSelect/FilterSelect";
 import { RichTextEditor } from "~/components/features/form/RichTextEditor";
 import { ProductVariants } from "../ProductVariants/ProductVariants";
+import { productDetail } from "~/service/product.service";
+import { formatVND } from "~/utils/formatVND";
+import { formatNumber } from "~/utils/formatNumber";
 
 export default function ProductForm() {
     const [loading, setLoading] = useState(false);
@@ -26,6 +30,8 @@ export default function ProductForm() {
     const [preview, setPreview] = useState<string[]>([]);
     const [selectedBrands, setSelectedBrands] = useState<(number | string)[]>([]);
     const [selectedCategories, setSelectedCategories] = useState<(number | string)[]>([]);
+    const [detail, setDetail] = useState();
+    const { slug } = useParams();
 
     const methods = useForm();
 
@@ -33,24 +39,25 @@ export default function ProductForm() {
         console.log(data.images);
     }
 
-    const {
-        register,
-        formState: { errors },
-        watch,
-        setValue,
-        control,
-    } = useForm<Product>();
+    // const {
+    //     register,
+    //     formState: { errors },
+    //     watch,
+    //     setValue,
+    //     control,
+    // } = useForm<Product>();
 
-    const name = watch("name");
+
+    const name = methods.watch("name");
 
     useEffect(() => {
         if (name) {
-            setValue("slug", slugify(name), {
+            methods.setValue("slug", slugify(name), {
                 shouldDirty: true,
                 shouldValidate: true,
             });
         }
-    }, [name, setValue]);
+    }, [name]);
 
     //FETCH BRAND
     const fetchBrand = async () => {
@@ -86,6 +93,27 @@ export default function ProductForm() {
         fetchCategory();
     }, []);
 
+    //FECTH PRODUCT DETRAIL
+    const product = async () => {
+        if (!slug) return;
+
+        setLoading(true);
+        try {
+            const res = await productDetail(slug);
+            console.log("Fetch product", res);
+            methods.reset(res);
+
+        } catch (error) {
+            console.log("fetch product detail error", error);
+            return;
+        } finally {
+            setLoading(false);
+        }
+    }
+    useEffect(() => {
+        product();
+    }, [slug]);
+
     return (
         <>
             <FormProvider {...methods}>
@@ -93,69 +121,65 @@ export default function ProductForm() {
                     <ImageUpload
                         name="images"
                         label="Hình ảnh sản phẩm" />
+
                     <div className="grid grid-cols-2 gap-2">
                         <span>
                             <FilterSelect
                                 label="Thương hiệu"
+                                name="brandId"
                                 options={brands}
-                                selected={selectedBrands}
-                                setSelected={setSelectedBrands}
                             />
                         </span>
 
                         <span>
                             <FilterSelect
                                 label="Danh mục"
+                                name="categoryId"
                                 options={categoies}
-                                selected={selectedCategories}
-                                setSelected={setSelectedCategories}
                             />
                         </span>
 
 
                         <Input id="name"
                             label="Tên sản phẩm"
-                            {...register("name", { required: "Không được để trống" })}
-                            error={errors.name} />
+                            {...methods.register("name", { required: "Không được để trống" })}
+                            error={methods.formState.errors.name} />
 
                         <Input id="slug"
                             label="Đường dẫn (slug)"
-                            {...register("slug")} />
+                            {...methods.register("slug")} />
 
-                        <div className="grid grid-cols-2 gap-3">
-                            <Input id="price"
-                                label="Giá sản phẩm"
-                                {...register("price", {
-                                    required: "Giá là bắt buộc",
-                                    valueAsNumber: true,
-                                    min: {
-                                        value: 0,
-                                        message: "Không được để trống"
-                                    }
-                                })} />
-                            <Input id="oldPrice"
-                                label="Giá giảm nếu có"
-                                {...register("oldPrice", {
-                                    required: "Giá giảm phải là số",
-                                    valueAsNumber: true,
-                                    min: {
-                                        value: 0,
-                                        message: "Không được để trống"
-                                    }
-                                })} />
-                        </div>
+                        <Input
+                            type="text"
+                            id="price"
+                            label="Giá sản phẩm"
+                            value={formatNumber(methods.watch("price") || 0)}
+                            onChange={(e) => {
+                                const raw = e.target.value.replace(/\D/g, "");
+                                methods.setValue("price", Number(raw), {
+                                    shouldDirty: true,
+                                    shouldValidate: true,
+                                });
+                            }}
+                        />
 
-                        <Input id="sold"
-                            label="Tổng số lượng"
-                            type="number"
-                            {...register("sold", {
-                                required: "Số lượng phải là số",
+                        <Input id="oldPrice"
+                            type="text"
+                            label="Giá giảm nếu có"
+                            value={formatNumber(methods.watch("oldProce") || 0)}
+                            {...methods.register("oldPrice", {
+                                required: "Giá giảm phải là số",
                                 valueAsNumber: true,
-                                min: {
-                                    value: 0,
-                                    message: "Số lượng phải >= 0"
-                                }
-                            })} />
+                            })}
+                            onChange={(e) => {
+                                const raw = e.target.value.replace(/\D/g, "");
+                                methods.setValue("oldPrice", Number(raw), {
+                                    shouldDirty: true,
+                                    shouldValidate: true,
+                                });
+                            }} />
+
+
 
                         <div className="col-span-2">
                             <ProductVariants />
@@ -164,10 +188,11 @@ export default function ProductForm() {
                         <div className="col-span-2">
                             <Controller
                                 name="description"
-                                control={control}
+                                control={methods.control}
                                 rules={{ required: "Không được bỏ trống" }}
                                 render={({ field }) => (
                                     <RichTextEditor
+                                        key={field.value}
                                         label="Mô tả sản phẩm"
                                         value={field.value}
                                         onChange={field.onChange}

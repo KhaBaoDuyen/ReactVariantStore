@@ -63,11 +63,11 @@ export const VariantItem = ({
             />
 
             <Input
-                id={`variant-quantity-${index}`}
+                id={`variant-stock-${index}`}
                 label="Số lượng"
                 type="number"
-                error={variantError?.quantity}
-                {...register(`variants.${index}.quantity`, {
+                error={variantError?.stock}
+                {...register(`variants.${index}.stock`, {
                     required: "Bắt buộc nhập số lượng",
                     valueAsNumber: true,
                     min: { value: 0, message: ">= 0" }
