@@ -23,6 +23,7 @@ export default function ProductPage() {
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(false);
+    const [activeCategory, setActiveCategory] = useState<number | null>(null);
     const navigate = useNavigate();
 
     const fetchProducts = async () => {
@@ -57,8 +58,8 @@ export default function ProductPage() {
         fetchCategory();
     }, []);
 
-
-
+    //FILTER TABS CATEGORY
+    const filterProductBYCategory = activeCategory == null ? products : products.filter(p => p.categoryId === activeCategory);
     return (
         <>
             <div className="">
@@ -75,7 +76,9 @@ export default function ProductPage() {
                     <div className="">
                         <div className="flex gap-2 w-12/12 overflow-x-auto overflow-y-hidden 
                         scrollbar-thin scrollbar-thumb-orange-500 custom-scroll-x py-2">
-                            <button className="
+                            <button
+                                onClick={() => setActiveCategory(null)}
+                                className="
                             border border-orange-600
                             text-white
                             bg-orange-600/50
@@ -83,19 +86,19 @@ export default function ProductPage() {
                             transition">
                                 Tất cả
                             </button>
-                            {categories.map((cat, index) => (
-                                <button key={index + 1} className="
-                            border border-orange-600
-                            text-orange-600
-                            hover:bg-orange-600 hover:text-white
-                            px-3 py-2 font-bold whitespace-nowrap rounded-md
-                            transition ">
+                            {categories.map((cat) => (
+                                <button
+                                    key={cat.id}
+                                    onClick={() => setActiveCategory(cat.id)}
+                                    className={`border px-3 py-2 rounded-md font-bold whitespace-nowrap transition
+                                             ${activeCategory === cat.id
+                                            ? "bg-orange-600 text-white"
+                                            : "text-orange-600 hover:bg-orange-600 hover:text-white"
+                                        }`}>
                                     {cat.name}
                                 </button>
                             ))}
                         </div>
-
-
                     </div>
 
 
@@ -115,36 +118,52 @@ export default function ProductPage() {
                                     </tr>
                                 </thead>
                                 {loading ? <Loading /> : (
-                                    <tbody className="">
-                                        {products.map((p, index) => {
-                                            return (
-                                                <tr key={index} className=" border-1 shadow hover:scale-102">
-                                                    <td className="py-3 px-4 bg-white rounded-l-md"> {index + 1}</td>
-                                                    <td className="py-3 px-4 bg-white ">
+                                    <tbody>
+                                        {filterProductBYCategory.length === 0 ? (
+                                            <tr>
+                                                <td colSpan={9} className="text-center py-8 text-gray-400 bg-white rounded-md">
+                                                    Không có sản phẩm
+                                                </td>
+                                            </tr>
+                                        ) : (
+                                            filterProductBYCategory.map((p, index) => (
+                                                <tr key={index} className="shadow hover:scale-102">
+                                                    <td className="py-3 px-4 bg-white rounded-l-md">{index + 1}</td>
+
+                                                    <td className="py-3 px-4 bg-white">
                                                         <img
-                                                            src={p.images[0].url}
+                                                            src={p.images[0]?.url}
                                                             alt={p.name}
                                                             className="w-12 h-12 object-cover rounded"
                                                         />
                                                     </td>
+
                                                     <td className="py-3 px-4 bg-white">{p.name}</td>
                                                     <td className="py-3 px-4 bg-white">{p.categoryId}</td>
                                                     <td className="py-3 px-4 bg-white">{p.brandId}</td>
                                                     <td className="py-3 px-4 bg-white">{formatVND(p.price)}</td>
+
                                                     <td className="py-3 px-4 bg-white">
                                                         {formatCompact(
                                                             p.variants?.reduce((s, v) => s + (v.stock ?? 0), 0) ?? 0
                                                         )}
                                                     </td>
-                                                    <td className="py-3 px-4 bg-white">{p.status ? "Hoạt động" : "Không hoạt động"}</td>
-                                                    <td className="py-3 px-4 bg-white  rounded-r-md">
+
+                                                    <td className="py-3 px-4 bg-white">
+                                                        {p.status ? "Hoạt động" : "Không hoạt động"}
+                                                    </td>
+
+                                                    <td className="py-3 px-4 bg-white rounded-r-md">
                                                         <RowActions
-                                                            onEdit={() => navigate(`/admin/products/${p.slug}/edit`)} />
+                                                            onEdit={() => navigate(`/admin/products/${p.slug}/edit`)}
+                                                        />
                                                     </td>
                                                 </tr>
-                                            );
-                                        })}
-                                    </tbody>)}
+                                            ))
+                                        )}
+                                    </tbody>
+
+                                )}
                             </table>
                         </div>
                     </div>
