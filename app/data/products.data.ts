@@ -7,106 +7,95 @@ export const PRODUCTS_DATA: Product[] = [
     slug: "ban-phim-co-keychron-k8-pro-1",
     description: "Bàn phím cơ Keychron không dây, build chắc chắn, gõ êm.",
     price: 2590000,
-    brandId: "keychron",
-    categoryId: "keyboard",
-    images: ["keyboard-1.jpg","keyboard-2.jpg","keyboard-3.jpg","keyboard-4.jpg"],
-    sold: 12500,
+    brandId: 1,
+    brand: {
+      id: 1,
+      name: "Keychron"
+    },
+    categoryId: 1,
+    category: {
+      id: 1,
+      name: "Keyboard"
+    },
+    images: [
+      { id: 1, url: "keyboard-1.jpg" },
+      { id: 2, url: "keyboard-2.jpg" },
+      { id: 3, url: "keyboard-3.jpg" },
+      { id: 4, url: "keyboard-4.jpg" }
+    ],
+    variants: [
+      { id: 1, name: " 1 mode", price: 1000000, image: "anh variant 1", stock: 60 },
+      { id: 2, name: " 2 mode", price: 2000000, image: "anh variant 2", stock: 20 },
+      { id: 3, name: " 3 mode", price: 3000000, image: "anh variant 3", stock: 30 },
+    ],
     rating: 4.5,
+    sold: 0,
     status: true,
   },
+
   {
     id: "p2",
     name: "Chuột Logitech G Pro X Superlight",
     slug: "chuot-logitech-g-pro-x-superlight",
-    description: "Chuột gaming siêu nhẹ 63g, cảm biến HERO 25K, wireless LIGHTSPEED.",
+    description: "Chuột gaming siêu nhẹ 63g.",
     price: 3490000,
     oldPrice: 3990000,
-    brandId: "logitech",
-    categoryId: "mouse",
-    images: ["mouse-1.jpg","mouse-2.jpg","mouse-3.jpg","mouse-4.jpg"],
-    sold: 28700,
+
+    brandId: 2,
+    brand: {
+      id: 2,
+      name: "Logitech"
+    },
+
+    categoryId: 2,
+    category: {
+      id: 2,
+      name: "Mouse"
+    },
+
+    images: [
+      { id: 5, url: "mouse-1.jpg" },
+      { id: 6, url: "mouse-2.jpg" },
+      { id: 7, url: "mouse-3.jpg" },
+      { id: 8, url: "mouse-4.jpg" }
+    ],
+    variants: [
+      { id: 1, name: " 1 mode", price: 1000000, image: "anh variant 1", stock: 60 },
+      { id: 2, name: " 2 mode", price: 2000000, image: "anh variant 2", stock: 20 },
+      { id: 3, name: " 3 mode", price: 3000000, image: "anh variant 3", stock: 30 },
+    ],
     rating: 4.8,
     status: true,
   },
+
   {
     id: "p3",
     name: "Bàn phím cơ Akko 5075B Plus",
     slug: "ban-phim-co-akko-5075b-plus",
-    description: "Bàn phím 75%, hỗ trợ Bluetooth, switch mượt.",
+    description: "Bàn phím 75%, hỗ trợ Bluetooth.",
     price: 1890000,
-    brandId: "akko",
-    categoryId: "keyboard",
-    images: ["keyboard-1.jpg","keyboard-2.jpg","keyboard-3.jpg","keyboard-4.jpg"],
-    sold: 9400,
+
+    brandId: 3,
+    brand: {
+      id: 3,
+      name: "Akko"
+    },
+
+    categoryId: 1,
+    category: {
+      id: 1,
+      name: "Keyboard"
+    },
+    images: [
+      { id: 9, url: "keyboard-1.jpg" },
+      { id: 10, url: "keyboard-2.jpg" }
+    ],
+    variants: [
+      { id: 1, name: " 1 mode", price: 1000000, image: "anh variant 1", stock: 60 },
+      { id: 2, name: " 2 mode", price: 2000000, image: "anh variant 2", stock: 20 },
+      { id: 3, name: " 3 mode", price: 3000000, image: "anh variant 3", stock: 30 },
+    ],
     rating: 4.3,
     status: true,
-  },
-  {
-    id: "p4",
-    name: "Chuột Razer DeathAdder V3 Pro",
-    slug: "chuot-razer-deathadder-v3-pro",
-    description: "Chuột công thái học cao cấp dành cho FPS.",
-    price: 4290000,
-    brandId: "razer",
-    categoryId: "mouse",
-    images: ["mouse-1.jpg","mouse-2.jpg","mouse-3.jpg","mouse-4.jpg"],
-    sold: 18300,
-    rating: 4.7,
-    status: true,
-  },
-  {
-    id: "p5",
-    name: "Bàn phím cơ Logitech G913 TKL",
-    slug: "ban-phim-co-logitech-g913-tkl",
-    description: "Bàn phím low-profile wireless cao cấp.",
-    price: 4390000,
-    oldPrice: 4990000,
-    brandId: "logitech",
-    categoryId: "keyboard",
-    images: ["keyboard-1.jpg","keyboard-2.jpg","keyboard-3.jpg","keyboard-4.jpg"],
-    sold: 7600,
-    rating: 4.6,
-    status: true,
-  },
-  {
-    id: "p6",
-    name: "Chuột SteelSeries Aerox 3 Wireless",
-    slug: "chuot-steelseries-aerox-3-wireless",
-    description: "Chuột siêu nhẹ, chống nước, pin lâu.",
-    price: 2390000,
-    oldPrice: 2790000,
-    brandId: "steelseries",
-    categoryId: "mouse",
-    images: ["mouse-1.jpg","mouse-2.jpg","mouse-3.jpg","mouse-4.jpg"],
-    sold: 11200,
-    rating: 4.4,
-    status: true,
-  },
-  {
-    id: "p7",
-    name: "Bàn phím cơ Leopold FC750R",
-    slug: "ban-phim-co-leopold-fc750r",
-    description: "Bàn phím cơ cao cấp, build cực chắc.",
-    price: 3290000,
-    brandId: "leopold",
-    categoryId: "keyboard",
-    images: ["keyboard-1.jpg","keyboard-2.jpg","keyboard-3.jpg","keyboard-4.jpg"],
-    sold: 5400,
-    rating: 4.2,
-    status: true,
-  },
-  {
-    id: "p8",
-    name: "Chuột Corsair Sabre RGB Pro",
-    slug: "chuot-corsair-sabre-rgb-pro",
-    description: "Chuột RGB nhẹ, phản hồi nhanh.",
-    price: 1690000,
-    oldPrice: 1990000,
-    brandId: "corsair",
-    categoryId: "mouse",
-    images: ["mouse-1.jpg","mouse-2.jpg","mouse-3.jpg","mouse-4.jpg"],
-    sold: 8900,
-    rating: 4.1,
-    status: true,
-  },
+  }
 ];
