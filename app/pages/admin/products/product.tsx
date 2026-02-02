@@ -1,4 +1,5 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+
 import { useEffect, useState } from "react";
 import { EllipsisVertical } from 'lucide-react';
 
@@ -22,6 +23,7 @@ export default function ProductPage() {
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const fetchProducts = async () => {
         setLoading(true);
@@ -68,7 +70,7 @@ export default function ProductPage() {
 
                 <div className="mt-10 ">
                     <div className="">
-                         <div className="flex gap-2 w-12/12 overflow-x-auto overflow-y-hidden 
+                        <div className="flex gap-2 w-12/12 overflow-x-auto overflow-y-hidden 
                         scrollbar-thin scrollbar-thumb-orange-500 custom-scroll-x py-2">
                             <button className="
                             border border-orange-600
@@ -129,7 +131,8 @@ export default function ProductPage() {
                                                     <td className="py-3 px-4 bg-white">{formatCompact(p.sold)}</td>
                                                     <td className="py-3 px-4 bg-white">{p.status ? "Hoạt động" : "Không hoạt động"}</td>
                                                     <td className="py-3 px-4 bg-white  rounded-r-md">
-                                                        <RowActions />
+                                                        <RowActions
+                                                            onEdit={() => navigate(`/admin/products/${p.slug}/edit`)} />
                                                     </td>
                                                 </tr>
                                             );
