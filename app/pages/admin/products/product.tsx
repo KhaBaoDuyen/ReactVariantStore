@@ -64,7 +64,7 @@ export default function ProductPage() {
         <>
             <div className="">
                 <span className="flex justify-between">
-                    <h1 className="text-2xl font-bold text-gray-800">
+                    <h1 className="text-2xl font-bold text-accent-600">
                         Quản lí sản phẩm
                     </h1>
                     <Link to="/admin/products/create"
@@ -117,7 +117,7 @@ export default function ProductPage() {
                                         <th className="py-3 px-4 text-left bg-gray-100  rounded-r-md"><EllipsisVertical /></th>
                                     </tr>
                                 </thead>
-                                {loading ? <Loading /> : (
+                                {!loading ? <Loading /> : (
                                     <tbody>
                                         {filterProductBYCategory.length === 0 ? (
                                             <tr>
