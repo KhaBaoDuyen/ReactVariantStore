@@ -1,6 +1,6 @@
-@use "~/styles/utilities/colors" as *;
+@use "../../../styles/abstracts/colors" as *;
 .loader {
-  border-top-color: $primary-600;
+  border-top-color: $accent-600;
   animation: spin 1s linear infinite;
 }
 
