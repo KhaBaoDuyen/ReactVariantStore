@@ -90,7 +90,7 @@ export default function ProductPage() {
                             hover:bg-orange-600 hover:text-white
                             px-3 py-2 font-bold whitespace-nowrap rounded-md
                             transition ">
-                                    {cat.title}
+                                    {cat.name}
                                 </button>
                             ))}
                         </div>
