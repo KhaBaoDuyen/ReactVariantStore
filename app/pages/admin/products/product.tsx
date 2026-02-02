@@ -31,6 +31,7 @@ export default function ProductPage() {
             const res = await getProducts();
             console.log("Fetched products:", res);
             setProducts(res);
+
         } catch (error) {
             console.log("Error fetching products:", error);
         } finally {
@@ -55,6 +56,8 @@ export default function ProductPage() {
         fetchProducts();
         fetchCategory();
     }, []);
+
+
 
     return (
         <>
@@ -119,7 +122,7 @@ export default function ProductPage() {
                                                     <td className="py-3 px-4 bg-white rounded-l-md"> {index + 1}</td>
                                                     <td className="py-3 px-4 bg-white ">
                                                         <img
-                                                            src={p.images[0]}
+                                                            src={p.images[0].url}
                                                             alt={p.name}
                                                             className="w-12 h-12 object-cover rounded"
                                                         />
@@ -128,7 +131,11 @@ export default function ProductPage() {
                                                     <td className="py-3 px-4 bg-white">{p.categoryId}</td>
                                                     <td className="py-3 px-4 bg-white">{p.brandId}</td>
                                                     <td className="py-3 px-4 bg-white">{formatVND(p.price)}</td>
-                                                    <td className="py-3 px-4 bg-white">{formatCompact(p.sold)}</td>
+                                                    <td className="py-3 px-4 bg-white">
+                                                        {formatCompact(
+                                                            p.variants?.reduce((s, v) => s + (v.stock ?? 0), 0) ?? 0
+                                                        )}
+                                                    </td>
                                                     <td className="py-3 px-4 bg-white">{p.status ? "Hoạt động" : "Không hoạt động"}</td>
                                                     <td className="py-3 px-4 bg-white  rounded-r-md">
                                                         <RowActions
