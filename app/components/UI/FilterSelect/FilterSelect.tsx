@@ -1,70 +1,58 @@
+import { useFormContext } from "react-hook-form";
 import { useState } from "react";
 
 type Option = {
-    id: number | string;
-    name?: string;
-    title?: string;
+  id: number | string;
+  name?: string;
+  title?: string;
 };
 
 type Props = {
-    label: string;
-    options: Option[];
-    selected: (number | string)[];
-    setSelected: (value: (number | string)[]) => void;
+  label: string;
+  name: string;
+  options: Option[];
 };
 
-export const FilterSelect = ({
-    label,
-    options,
-    selected,
-    setSelected,
-}: Props) => {
-    const [keyword, setKeyword] = useState("");
+export const FilterSelect = ({ label, name, options }: Props) => {
+  const { watch, setValue } = useFormContext();
 
-    const toggle = (id: number | string) => {
-        if (selected.includes(id)) {
-            setSelected(selected.filter((i) => i !== id));
-        } else {
-            setSelected([...selected, id]);
-        }
-    };
+  const [keyword, setKeyword] = useState("");
 
-    const filtered = options.filter((o) =>
-        (o.name || o.title)!
-            .toLowerCase()
-            .includes(keyword.toLowerCase())
-    );
+  const value = watch(name); // number | string
 
-    return (
-        <div className="space-y-2">
-            <h1 className="text-accent-600 font-bold">{label}</h1>
+  const filtered = options.filter((o) =>
+    (o.name || o.title)!
+      .toLowerCase()
+      .includes(keyword.toLowerCase())
+  );
 
-             <input
-                placeholder="Tìm kiếm..."
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-                className="border rounded-md px-3 py-2 w-full text-sm"
-            />
+  return (
+    <div className="space-y-2">
+      <h1 className="font-bold">{label}</h1>
 
-             <div className="border rounded-md max-h-[180px] overflow-y-auto custom-scroll-x p-2 space-y-2">
-                {filtered.map((o) => {
-                    const text = o.name || o.title;
+      <input
+        placeholder="Tìm kiếm..."
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+        className="border rounded-md px-3 py-2 w-full text-sm"
+      />
 
-                    return (
-                        <label
-                            key={o.id}
-                            className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded"
-                        >
-                            <input
-                                type="checkbox"
-                                checked={selected.includes(o.id)}
-                                onChange={() => toggle(o.id)}
-                            />
-                            <span>{text}</span>
-                        </label>
-                    );
-                })}
-            </div>
-        </div>
-    );
+      <div className="border rounded-md max-h-[180px] overflow-y-auto p-2 space-y-2">
+        {filtered.map((o) => {
+          const text = o.name || o.title;
+
+          return (
+            <label key={o.id} className="flex items-center gap-2">
+              <input
+                type="radio"
+                checked={value === o.id}
+                onChange={() => setValue(name, o.id)}
+              />
+              <span>{text}</span>
+            </label>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
