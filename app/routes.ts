@@ -29,6 +29,10 @@ export default [
       route("products/create", "routes/admin/products/productCreate.tsx"),
       route("products/:slug/edit", "routes/admin/products/productEdit.tsx"),
 
+      route("/admin/categories", "routes/admin/categories/categories.tsx"),
+      // route("/admin/categories/create", "routes/admin/categories/categoryCreate.tsx",),
+      // route("/admin/categories/:slug/edit", "routes/admin/categories/categoryEdit.tsx",),
+      
       // route("/admin/blogs", "routes/admin/blogs/blogs.tsx"),
       // route("/admin/blogs/create", "routes/admin/blogs/blogCreate.tsx"),
       // route("/admin/blogs/:slug/edit", "routes/admin/blogs/blogEdit.tsx"),
@@ -40,9 +44,6 @@ export default [
       // route("/admin/users/create", "routes/admin/users/usersCreate.tsx"),
       // route("/admin/users/:slug/edit", "routes/admin/users/usersEdit.tsx"),
 
-      // route("/admin/categories", "routes/admin/categories/categories.tsx"),
-      // route("/admin/categories/create", "routes/admin/categories/categoryCreate.tsx",),
-      // route("/admin/categories/:slug/edit", "routes/admin/categories/categoryEdit.tsx",),
 
       // route("/admin/brands", "routes/admin/brands/brands.tsx"),
       // route("/admin/brands/create", "routes/admin/brands/brandCreate.tsx"),
