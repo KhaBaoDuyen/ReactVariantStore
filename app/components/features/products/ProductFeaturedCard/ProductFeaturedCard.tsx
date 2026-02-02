@@ -9,10 +9,9 @@ export const ProductFeaturedCard = ({
     name,
     image,
     price,
-    priceReduced,
+    salePrice ,
     description,
-    sold
-}: ProductFeaturedItem) => {
+ }: ProductFeaturedItem) => {
     return (
         <>
             <Link
@@ -43,9 +42,9 @@ export const ProductFeaturedCard = ({
                             <span className="text-red font-bold text-lg">
                                 {formatVND(price)}
                             </span>
-                            { priceReduced &&priceReduced > 0 && (
+                            { salePrice  && salePrice > 0 && (
                                 <span className="text-sm text-gray-500 line-through">
-                                    {formatVND(priceReduced)}
+                                    {formatVND(Number(salePrice))}
                                 </span>
                             )}
                         </div>
@@ -54,7 +53,7 @@ export const ProductFeaturedCard = ({
                         </p>
                     </div>
                     <p className="text-xs text-right text-gray-500 mt-1">
-                        Đã bán {formatCompact(sold)}
+                        Đã bán {formatCompact(Number(5))}
                     </p>
                 </div>
             </Link>
