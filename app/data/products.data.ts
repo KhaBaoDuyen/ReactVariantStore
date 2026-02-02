@@ -7,6 +7,7 @@ export const PRODUCTS_DATA: Product[] = [
 		slug: "ban-phim-co-keychron-k8-pro-1",
 		description: "Bàn phím cơ Keychron không dây, build chắc chắn, gõ êm.",
 		price: 2590000,
+		salePrice: 2300000,
 		brandId: 1,
 		brand: {
 			id: 1,
@@ -57,8 +58,7 @@ export const PRODUCTS_DATA: Product[] = [
 		slug: "chuot-logitech-g-pro-x-superlight",
 		description: "Chuột gaming siêu nhẹ 63g.",
 		price: 3490000,
-		oldPrice: 3990000,
-
+		salePrice: 3990000,
 		brandId: 2,
 		brand: {
 			id: 2,
