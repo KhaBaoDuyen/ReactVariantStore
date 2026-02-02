@@ -21,32 +21,32 @@ export const SIDEBAR_DATA: Sidebar[] = [
     icon: LayoutDashboard,
   },
   {
-    title: "Products",
+    title: "Sản phẩm",
     slug: "/admin/products",
     icon: Package,
   },
   {
-    title: "Orders",
-    slug: "/admin/orders",
-    icon: ShoppingCart,
-  },
-  {
-    title: "Users",
-    slug: "/admin/users",
-    icon: Users,
-  },
-  {
-    title: "Categories",
+    title: "Danh mục",
     slug: "/admin/categories",
     icon: Tags,
   },
   {
-    title: "Brands",
+    title: "Tài khoản",
+    slug: "/admin/users",
+    icon: Users,
+  },
+  {
+    title: "Đơn hàng",
+    slug: "/admin/orders",
+    icon: ShoppingCart,
+  },
+  {
+    title: "Thương hiệu",
     slug: "/admin/brands",
     icon: BadgeDollarSign,
   },
   {
-    title: "Stores",
+    title: "Chuỗi cửa hàng",
     slug: "/admin/stores",
     icon: Store,
   },
