@@ -1,4 +1,4 @@
 export type SwipeToSlideProps = {
-    arrows?: boolean,
-    dots?: boolean,
-}
+	arrows?: boolean;
+	dots?: boolean;
+};

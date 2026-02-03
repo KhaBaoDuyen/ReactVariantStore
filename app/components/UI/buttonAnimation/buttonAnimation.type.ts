@@ -1,5 +1,5 @@
 export type ButtonAnimationProps = {
-    name: string;
-    path: string;
-    imageAlt: string;
+	name: string;
+	path: string;
+	imageAlt: string;
 };

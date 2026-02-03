@@ -1,8 +1,8 @@
 import { Outlet } from "react-router";
-import { Header } from "~/components/layout/header/header";
-import { Footer } from "~/components/layout/footer/footer";
-import bannerFooter from "/assets/images/banner-footer.png";
 import { ScrollToTopButton } from "~/components/UI/ScrollToTopButton/ScrollToTopButton";
+import { Footer } from "~/components/layout/footer/footer";
+import { Header } from "~/components/layout/header/header";
+import bannerFooter from "/assets/images/banner-footer.png";
 
 export default function ClientLayout() {
 	return (

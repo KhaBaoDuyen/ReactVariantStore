@@ -1,3 +1,3 @@
 export type RegisterPageProps = {
-    switchToLogin: () => void;
+	switchToLogin: () => void;
 };

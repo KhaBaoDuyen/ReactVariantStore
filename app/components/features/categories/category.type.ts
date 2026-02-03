@@ -1,5 +1,5 @@
 export type CategoryFormProps = {
-  mode: "create" | "edit"
-  defaultValues?: any
-  onSubmit: (data: any) => void
-}
+	mode: "create" | "edit";
+	defaultValues?: any;
+	onSubmit: (data: any) => void;
+};

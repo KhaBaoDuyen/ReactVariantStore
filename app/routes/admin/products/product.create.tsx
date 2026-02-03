@@ -1,13 +1,13 @@
 import ProductCreatePage from "~/pages/admin/products/product.create";
-import { Route } from "./+types/product.create";
+import type { Route } from "./+types/product.create";
 
-export function meta({ }: Route.MetaArgs) {
-    return [
-        { title: "Thêm sản phẩm" },
-        { name: "description", content: "Trang thêm sản phẩm của cửa hàng" }
-    ]
+export function meta({}: Route.MetaArgs) {
+	return [
+		{ title: "Thêm sản phẩm" },
+		{ name: "description", content: "Trang thêm sản phẩm của cửa hàng" },
+	];
 }
 
 export default function ProductCreate() {
-    return < ProductCreatePage />
+	return <ProductCreatePage />;
 }

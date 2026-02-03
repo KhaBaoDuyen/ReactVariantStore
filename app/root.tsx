@@ -20,9 +20,9 @@ import "slick-carousel/slick/slick-theme.css";
 
 import bannerFooter from "/assets/images/banner-footer.png";
 
-import { Header } from "./components/layout/header/header";
-import { Footer } from "./components/layout/footer/footer";
 import { ScrollToTopButton } from "~/components/UI/ScrollToTopButton/ScrollToTopButton";
+import { Footer } from "./components/layout/footer/footer";
+import { Header } from "./components/layout/header/header";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -46,9 +46,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<Meta />
 				<Links />
-
 			</head>
-			<body >
+			<body>
 				{children}
 				<ScrollRestoration />
 				<Scripts />
@@ -60,7 +59,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
 	return <Outlet />;
 }
-
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 	let message = "Oops!";

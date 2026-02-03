@@ -2,21 +2,20 @@ import "./auth.scss";
 import { useState } from "react";
 import LoginPage from "./login/login";
 import RegisterPage from "./resgister/resgister";
- 
-export default function AuthPage() {
-    const [mode, setMode] = useState<"login" | "register">("login");
-    return (
-        <>
-            <div className="relative  bg-auth min-h-[80vh] items-center justify-center flex ">
-                <div className="relative z-10">
-                    {mode === "login" ? (
-                        <LoginPage switchToRegister={() => setMode("register")} />
-                    ) : (
-                        <RegisterPage switchToLogin={() => setMode("login")} />
-                    )}
-                </div>
-            </div>
-        </>
 
-    );
+export default function AuthPage() {
+	const [mode, setMode] = useState<"login" | "register">("login");
+	return (
+		<>
+			<div className="relative  bg-auth min-h-[80vh] items-center justify-center flex ">
+				<div className="relative z-10">
+					{mode === "login" ? (
+						<LoginPage switchToRegister={() => setMode("register")} />
+					) : (
+						<RegisterPage switchToLogin={() => setMode("login")} />
+					)}
+				</div>
+			</div>
+		</>
+	);
 }

@@ -1,4 +1,4 @@
 export type RowActionProp = {
-    onEdit?: () => void;
-    onDelete?: () => void;
-}
+	onEdit?: () => void;
+	onDelete?: () => void;
+};

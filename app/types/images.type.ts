@@ -1,5 +1,5 @@
 export type Images = {
-  id: number;
-  url: string;
-  isThumbnail?: boolean;
+	id: number;
+	url: string;
+	isThumbnail?: boolean;
 };

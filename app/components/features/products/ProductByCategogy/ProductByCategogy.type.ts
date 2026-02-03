@@ -1,5 +1,5 @@
 export type ProductByCategogyProps = {
-  image: string;
-  name: string;
-  path: string;
+	image: string;
+	name: string;
+	path: string;
 };

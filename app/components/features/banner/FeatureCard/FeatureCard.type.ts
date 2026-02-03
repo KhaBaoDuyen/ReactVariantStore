@@ -1,6 +1,6 @@
-export type FeatureCardProps ={
-    image: string;
-    title: string;
-    description: string;
-    offsetY?: number;
-}
+export type FeatureCardProps = {
+	image: string;
+	title: string;
+	description: string;
+	offsetY?: number;
+};
