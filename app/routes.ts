@@ -25,11 +25,11 @@ export default [
     [
       index("routes/admin/dashboard.tsx"),
 
-      route("products", "routes/admin/products/products.list.tsx"),
+      route("products", "routes/admin/products/product.list.tsx"),
       route("products/create", "routes/admin/products/product.create.tsx"),
       route("products/:slug/edit", "routes/admin/products/product.edit.tsx"),
 
-      route("/admin/categories", "routes/admin/categories/categories.tsx"),
+      route("/admin/categories", "routes/admin/categories/category.list.tsx"),
       route("/admin/categories/create", "routes/admin/categories/category.create.tsx",),
       route("/admin/categories/:slug/edit", "routes/admin/categories/category.edit.tsx",),
       

@@ -1,5 +1,5 @@
  import { Route } from ".react-router/types/app/+types/root"
-import CategoriesPage from "~/pages/admin/categories/categogy"
+import CategoriesPage from "~/pages/admin/categories/category.list"
 
 export function meta({ }: Route.MetaArgs) {
     return [

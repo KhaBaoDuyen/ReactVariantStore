@@ -1,6 +1,6 @@
+import { Route } from ".react-router/types/app/+types/root";
 import ProductEditPage from "~/pages/admin/products/product.edit";
-import { Route } from "./+types/productCreate";
-
+ 
 export function meta({ }: Route.MetaArgs) {
     return [
         { title: " Chỉnh sửa sản phẩm" },
