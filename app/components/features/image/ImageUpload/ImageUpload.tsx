@@ -1,67 +1,119 @@
-import { useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { useEffect, useState } from "react"
+import { useFormContext } from "react-hook-form"
 
 type Props = {
-    name: string;
-    label?: string;
-};
+    name: string
+    label?: string
+    required?: boolean
+    maxFiles?: number
+    maxSizeMB?: number
+}
 
-export const ImageUpload = ({ name, label }: Props) => {
-    const { register, setValue, watch } = useFormContext();
-    const [previews, setPreviews] = useState<string[]>([]);
+export const ImageUpload = ({
+    name,
+    label,
+    required = false,
+    maxFiles = 5,
+    maxSizeMB = 2
+}: Props) => {
+    const {
+        register,
+        setValue,
+        watch,
+        setError,
+        clearErrors,
+        formState: { errors }
+    } = useFormContext()
 
-    //LẤY VALUE TỪ FORM
-    const raw = watch(name);
+    const [previews, setPreviews] = useState<string[]>([])
+
+    const raw = watch(name)
 
     const files: any[] =
         raw instanceof FileList
             ? Array.from(raw)
             : Array.isArray(raw)
                 ? raw
-                : [];
+                : []
 
-    //TẠO PREVIEW
+    //PREVIEW
     useEffect(() => {
         if (!files.length) {
-            setPreviews([]);
-            return;
+            setPreviews([])
+            return
         }
 
         const urls = files
             .map((item) => {
-                if (typeof item === "string") return item;
-
-                //  backend object 
-                if (item && typeof item === "object" && "url" in item) return item.url;
-
-                // upload mới 
-                if (item instanceof File) return URL.createObjectURL(item);
-
-                return null;
+                if (typeof item === "string") return item
+                if (item?.url) return item.url
+                if (item instanceof File) return URL.createObjectURL(item)
+                return null
             })
-            .filter(Boolean) as string[];
+            .filter(Boolean) as string[]
 
-        setPreviews(urls);
+        setPreviews(urls)
 
-        // cleanup memory 
         return () => {
             urls.forEach((u) => {
-                if (u.startsWith("blob:")) URL.revokeObjectURL(u);
-            });
-        };
-    }, [files]);
+                if (u.startsWith("blob:")) URL.revokeObjectURL(u)
+            })
+        }
+    }, [files])
 
-    //HANDLE UPLOAD
+    //VALIDATION 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const fileArray = Array.from(e.target.files || []);
-        setValue(name, fileArray, { shouldDirty: true });
-    };
+        const fileArray = Array.from(e.target.files || [])
+
+        clearErrors(name)
+
+        // max files
+        if (fileArray.length > maxFiles) {
+            setError(name, {
+                message: `Chỉ được tối đa ${maxFiles} ảnh`
+            })
+            return
+        }
+
+        for (const file of fileArray) {
+            // only image
+            if (!file.type.startsWith("image/")) {
+                setError(name, { message: "Chỉ cho phép file ảnh" })
+                return
+            }
+
+            // size
+            if (file.size > maxSizeMB * 1024 * 1024) {
+                setError(name, {
+                    message: `Ảnh phải nhỏ hơn ${maxSizeMB}MB`
+                })
+                return
+            }
+        }
+
+        setValue(name, fileArray, { shouldDirty: true })
+    }
 
     //REMOVE
     const removeImage = (index: number) => {
-        const newFiles = files.filter((_, i) => i !== index);
-        setValue(name, newFiles, { shouldDirty: true });
-    };
+        const newFiles = files.filter((_, i) => i !== index)
+        setValue(name, newFiles, { shouldDirty: true })
+
+        if (required && newFiles.length === 0) {
+            setError(name, { message: "Vui lòng chọn ảnh" })
+        }
+    }
+
+
+    const { onChange, ...rest } = register(name, {
+        validate: (value) => {
+            if (required && (!value || value.length === 0)) {
+                return "Vui lòng chọn ảnh"
+            }
+            return true
+        }
+    })
+
 
     return (
         <div className="space-y-3">
@@ -71,10 +123,19 @@ export const ImageUpload = ({ name, label }: Props) => {
                 type="file"
                 multiple
                 accept="image/*"
-                {...register(name)}
-                onChange={handleChange}
+                {...rest}
+                onChange={(e) => {
+                    onChange(e)
+                    handleChange(e)
+                }}
                 className="block w-full border p-5 rounded-xl border-dashed"
             />
+
+            {errors[name] && (
+                <p className="text-sm text-red-500">
+                    {String(errors[name]?.message)}
+                </p>
+            )}
 
             <div className="grid grid-cols-4 gap-3">
                 {previews.map((src, index) => (
@@ -95,5 +156,5 @@ export const ImageUpload = ({ name, label }: Props) => {
                 ))}
             </div>
         </div>
-    );
-};
+    )
+}
