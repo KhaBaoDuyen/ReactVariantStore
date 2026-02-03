@@ -1,4 +1,4 @@
-import CategoriesPage from "~/pages/admin/categories/category.list";
+ import CategoryCreatePage from "~/pages/admin/categories/category.create";
 import { Route } from "./+types/category.create";
 
 export function meta({}: Route.MetaArgs){
@@ -8,6 +8,6 @@ export function meta({}: Route.MetaArgs){
     ]
 }
 
-export default function Categories(){
-    return <CategoriesPage/>
+export default function CategoryCreate(){
+    return <CategoryCreatePage/>
 }
