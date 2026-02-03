@@ -25,13 +25,13 @@ export default [
     [
       index("routes/admin/dashboard.tsx"),
 
-      route("products", "routes/admin/products/products.tsx"),
-      route("products/create", "routes/admin/products/productCreate.tsx"),
-      route("products/:slug/edit", "routes/admin/products/productEdit.tsx"),
+      route("products", "routes/admin/products/products.list.tsx"),
+      route("products/create", "routes/admin/products/product.create.tsx"),
+      route("products/:slug/edit", "routes/admin/products/product.edit.tsx"),
 
       route("/admin/categories", "routes/admin/categories/categories.tsx"),
-      // route("/admin/categories/create", "routes/admin/categories/categoryCreate.tsx",),
-      // route("/admin/categories/:slug/edit", "routes/admin/categories/categoryEdit.tsx",),
+      route("/admin/categories/create", "routes/admin/categories/category.create.tsx",),
+      route("/admin/categories/:slug/edit", "routes/admin/categories/category.edit.tsx",),
       
       // route("/admin/blogs", "routes/admin/blogs/blogs.tsx"),
       // route("/admin/blogs/create", "routes/admin/blogs/blogCreate.tsx"),

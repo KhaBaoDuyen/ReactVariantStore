@@ -1,4 +1,4 @@
-import ProductPage from "~/pages/admin/products/product";
+import ProductPage from "~/pages/admin/products/product.list";
 import { Route } from ".react-router/types/app/+types/root";
 
 export function meta({}: Route.MetaArgs){
